@@ -15,3 +15,5 @@
 /src/Client.Infrastructure/bin/Debug/net8.0
 /Desafio/.vs/Desafio/DesignTimeBuild
 /.vs
+/src/Client.Web/bin/Debug/net8.0
+/src/Client.Web/obj
