@@ -9,3 +9,7 @@
 /src/Client.Domain/obj/Debug/net8.0
 /src/Client.Domain/obj
 /src/Client.Infrastructure/obj
+/src/Client.Api/bin/Debug/net8.0
+/src/Client.Application/bin/Debug/net8.0
+/src/Client.Domain/bin/Debug/net8.0
+/src/Client.Infrastructure/bin/Debug/net8.0
