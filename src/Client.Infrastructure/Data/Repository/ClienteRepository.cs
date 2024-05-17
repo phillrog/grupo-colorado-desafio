@@ -37,7 +37,8 @@ namespace Client.Infrastructure.Data.Repository
         public void Remove(ClienteDomain domain)
         {
             var model = ToModel(domain);
-            _context.Cliente.Remove(model);
+
+            _context.Remove(_context.Cliente.Include(d => d.Telefones).First(d => d.Id == model.Id));
         }
 
         public void Update(ClienteDomain domain)

@@ -1,4 +1,5 @@
 ﻿using Client.Application.Clientes.Commands.Create;
+using Client.Application.Clientes.Commands.Delete;
 using Client.Application.Clientes.Commands.Update;
 using Client.Application.Clientes.Queries.GetAll;
 using Client.Application.Clientes.Queries.GetById;
@@ -52,8 +53,10 @@ namespace Client.Api.Controllers
 
         // DELETE api/<ClientesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _mediator.Send(new DeleteClienteCommand { Id = id });
+            return NoContent();
         }
     }
 }
