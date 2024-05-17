@@ -7,5 +7,6 @@
         Task<IEnumerable<TEntity>> GetAll();
         void Update(TEntity domain);
         void Remove(TEntity domain);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

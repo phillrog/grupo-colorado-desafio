@@ -1,5 +1,5 @@
 ﻿using Client.Domain.Interfaces;
-using Client.Domain.Entities;
+using Client.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -14,11 +14,11 @@ namespace Client.Infrastructure.Data.Context
 
         public override int SaveChanges()
         {
-            var modifiedEntries = ChangeTracker.Entries().Where(x => x.Entity is Entity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+            var modifiedEntries = ChangeTracker.Entries().Where(x => x.Entity is IEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
             foreach (var entry in modifiedEntries)
             {
-                var entity = entry.Entity as Entity;
+                var entity = entry.Entity as IEntity;
 
                 if (entity == null) continue;
 

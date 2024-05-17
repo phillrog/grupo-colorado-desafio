@@ -2,7 +2,7 @@
 
 namespace Client.Domain.Interfaces
 {
-    public interface IClienteRepository : IRepository<Cliente>
+    public interface IClienteRepository : IRepository<ClienteDomain>
     {
     }
 }

@@ -1,6 +1,6 @@
-﻿using Client.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Client.Infrastructure.Data.Models;
 
 namespace Client.Infrastructure.Data.Configurations
 {

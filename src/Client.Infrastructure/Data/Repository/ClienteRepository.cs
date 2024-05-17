@@ -2,6 +2,7 @@
 using Client.Domain.Entities;
 using Client.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Client.Infrastructure.Data.Models;
 
 namespace Client.Infrastructure.Data.Repository
 {
@@ -13,29 +14,90 @@ namespace Client.Infrastructure.Data.Repository
             _context = clienteDbContext;
         }
 
-        public void Add(Cliente domain)
+        public void Add(ClienteDomain domain)
         {
-            _context.Cliente.Add(domain);
+            _context.Cliente.Add(ToModel(domain));
         }
 
-        public async Task<IEnumerable<Cliente>> GetAll()
+        public async Task<IEnumerable<ClienteDomain>> GetAll()
         {
-            return await _context.Cliente.AsNoTracking().ToListAsync();
+            return await Task.FromResult(_context.Cliente.AsNoTracking().Select(ToDomain));
         }
 
-        public async Task<Cliente> GetById(int id)
+        public async Task<ClienteDomain> GetById(int id)
         {
-            return await _context.Cliente.FirstAsync(x => x.Id == id);
+            var entity = _context.Cliente.Include(d=> d.Telefones).First(d => d.Id == id);
+            if (entity == null)
+                return null;
+
+            return await Task.FromResult(ToDomain(entity));
         }
 
-        public void Remove(Cliente domain)
+        public void Remove(ClienteDomain domain)
         {
-            _context.Cliente.Remove(domain);
+            var model = ToModel(domain);
+            _context.Cliente.Remove(model);
         }
 
-        public void Update(Cliente domain)
+        public void Update(ClienteDomain domain)
         {
-            _context.Cliente.Update(domain);
+            var model = ToModel(domain);
+            _context.Cliente.Update(model);
+        }
+
+        private Cliente ToModel(ClienteDomain domain)
+        {
+            return new Cliente()
+            {
+                Id = domain.Id,
+                RazaoSocial = domain.RazaoSocial,
+                NomeFantasia = domain.NomeFantasia,
+                TipoPessoa = domain.TipoPessoa,
+                Documento = domain.Documento,
+                Endereco = domain.Endereco,
+                Complemento = domain.Complemento,
+                Bairro = domain.Bairro,
+                Cidade = domain.Cidade,
+                Cep = domain.Cep,
+                Uf = domain.Uf,
+                Telefones = domain.Telefones.Select(t => new Telefone()
+                {
+                    Id = t.Id,
+                    Ativo = t.Ativo,
+                    IdCliente = t.IdCliente,
+                    NumeroTelefone = t.NumeroTelefone,
+                    Operadora = t.Operadora,
+                    TipoTelefone = t.TipoTelefone
+                }).ToList()
+            };
+        }
+
+        private ClienteDomain ToDomain(Cliente model)
+        {
+            return new ClienteDomain(model.Id,
+                model.RazaoSocial,
+                model.NomeFantasia,
+                (int)model.TipoPessoa,
+                model.Documento,
+                model.Endereco,
+                model.Complemento,
+                model.Bairro,
+                model.Cidade,
+                model.Cep,
+                model.Uf,
+                model.Telefones.Select(t => new TelefoneDomain(
+                    t.Id,
+                    t.IdCliente,
+                    t.Operadora,
+                    t.NumeroTelefone,
+                    t.Ativo,
+                    t.TipoTelefone.Id
+                )));
+        }
+
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
