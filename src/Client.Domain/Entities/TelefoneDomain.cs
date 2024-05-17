@@ -11,14 +11,14 @@ namespace Client.Domain.Entities
             Id = Guid.NewGuid();
         }
 
-        public TelefoneDomain(Guid id, int idCliente, string numeroTelefone, string operadora, bool ativo, int tipoTelefone)
+        public TelefoneDomain(Guid id, int idCliente, string numeroTelefone, string operadora, bool ativo, TipoTelefoneEnum tipoTelefone)
             : base(id)
         {
             IdCliente = idCliente;
             NumeroTelefone = numeroTelefone;
             Operadora = operadora;
             Ativo = ativo;
-            TipoTelefone = TipoTelefone.From((TipoTelefoneEnum)tipoTelefone);
+            TipoTelefone = TipoTelefone.From(tipoTelefone);
         }
 
 

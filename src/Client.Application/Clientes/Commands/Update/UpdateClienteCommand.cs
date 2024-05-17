@@ -1,10 +1,11 @@
 ﻿using Client.Domain.Enums;
 using FluentValidation.Results;
 
-namespace Client.Application.Clientes.Commands.Create
+namespace Client.Application.Clientes.Commands.Update
 {
-    public record CreateClienteCommand : IRequest<bool>
+    public record UpdateClienteCommand : IRequest<bool>
     {
+        public int Id { get; init; }
         public string RazaoSocial { get; init; }
         public string NomeFantasia { get; init; }
         public TipoPessoaEnum TipoPessoa { get; init; }
@@ -15,22 +16,25 @@ namespace Client.Application.Clientes.Commands.Create
         public string Cidade { get; init; }
         public string Cep { get; init; }
         public string Uf { get; init; }
-        public IEnumerable<TelefoneCreateCommand> Telefones { get; init; }
-
+        public IEnumerable<TelefoneUpdateCommand> Telefones { get; init; }
     }
 
-    public record TelefoneCreateCommand
+    public record TelefoneUpdateCommand
     {
         public Guid Id { get; init; }
+        public int IdCliente { get; init; }
         public string NumeroTelefone { get; init; }
         public string Operadora { get; init; }
-        public TipoTelefoneEnum TipoTelefone { get; init; }
+        public bool Ativo { get; init; }
+        public TipoTelefoneEnum IdTipoTelefone { get; init; }
+        public string TipoTelefone { get; init; }
     }
 
-    public class CreateClienteCommandValidator : AbstractValidator<CreateClienteCommand>
+    public class UpdateClienteCommandValidator : AbstractValidator<UpdateClienteCommand>
     {
-        public CreateClienteCommandValidator()
+        public UpdateClienteCommandValidator()
         {
+            RuleFor(v => v.Id).NotEmpty().NotNull().GreaterThan(0);
             RuleFor(v => v.RazaoSocial).MaximumLength(200).NotEmpty();
             RuleFor(v => v.NomeFantasia).MaximumLength(200).NotEmpty();
             RuleFor(v => v.TipoPessoa).IsInEnum().Must(i => Enum.IsDefined(typeof(TipoPessoaEnum), i));
@@ -47,17 +51,18 @@ namespace Client.Application.Clientes.Commands.Create
                 if (lista == null || lista.Count() == 0)
                 {
                     context.AddFailure(new ValidationFailure("Erro", "'Telefones' deve existir pelo menos 1."));
-                }                
+                }
             });
-            RuleForEach(x => x.Telefones).SetValidator(new TelefoneCreateCommandValidator());
+            RuleForEach(x => x.Telefones).SetValidator(new TelefoneUpdateCommandValidator());
         }
     }
 
-    public class TelefoneCreateCommandValidator : AbstractValidator<TelefoneCreateCommand>
+    public class TelefoneUpdateCommandValidator : AbstractValidator<TelefoneUpdateCommand>
     {
-        public TelefoneCreateCommandValidator()
+        public TelefoneUpdateCommandValidator()
         {
-            RuleFor(v => v.TipoTelefone).IsInEnum().Must(i => Enum.IsDefined(typeof(TipoTelefoneEnum), i));
+            RuleFor(v => v.IdCliente).NotEmpty().NotNull().GreaterThan(0);
+            RuleFor(v => v.IdTipoTelefone).IsInEnum();
             RuleFor(v => v.NumeroTelefone).MaximumLength(12).NotEmpty();
             RuleFor(v => v.Operadora).MaximumLength(3).NotEmpty();
         }

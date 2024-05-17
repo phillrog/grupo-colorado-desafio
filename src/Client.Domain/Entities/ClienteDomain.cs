@@ -23,13 +23,13 @@ namespace Client.Domain.Entities
             Telefones = telefones;
         }
 
-        public ClienteDomain(int id, string razaoSocial, string nomeFantasia, int tipoPessoa, string documento, string endereco, string complemento, string bairro, string cidade, string cep, string uf, IEnumerable<TelefoneDomain> telefones)
+        public ClienteDomain(int id, string razaoSocial, string nomeFantasia, TipoPessoaEnum tipoPessoa, string documento, string endereco, string complemento, string bairro, string cidade, string cep, string uf, IEnumerable<TelefoneDomain> telefones)
             : base(0)
         {
             Id = id;
             RazaoSocial = razaoSocial;
             NomeFantasia = nomeFantasia;
-            TipoPessoa = (TipoPessoaEnum)tipoPessoa;
+            TipoPessoa = tipoPessoa;
             Documento = documento;
             Endereco = endereco;
             Complemento = complemento;

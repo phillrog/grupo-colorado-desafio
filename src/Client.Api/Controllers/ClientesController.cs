@@ -1,9 +1,9 @@
 ﻿using Client.Application.Clientes.Commands.Create;
+using Client.Application.Clientes.Commands.Update;
 using Client.Application.Clientes.Queries.GetAll;
 using Client.Application.Clientes.Queries.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,8 +43,11 @@ namespace Client.Api.Controllers
 
         // PUT api/<ClientesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateClienteCommand command)
         {
+            if (id != command.Id) return BadRequest();
+            await _mediator.Send(command);
+            return NoContent();
         }
 
         // DELETE api/<ClientesController>/5

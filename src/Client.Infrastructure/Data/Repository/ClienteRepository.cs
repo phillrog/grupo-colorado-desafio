@@ -3,6 +3,7 @@ using Client.Domain.Entities;
 using Client.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Client.Infrastructure.Data.Models;
+using Client.Domain.Enums;
 
 namespace Client.Infrastructure.Data.Repository
 {
@@ -77,7 +78,7 @@ namespace Client.Infrastructure.Data.Repository
             return new ClienteDomain(model.Id,
                 model.RazaoSocial,
                 model.NomeFantasia,
-                (int)model.TipoPessoa,
+                model.TipoPessoa,
                 model.Documento,
                 model.Endereco,
                 model.Complemento,
@@ -91,7 +92,7 @@ namespace Client.Infrastructure.Data.Repository
                     t.Operadora,
                     t.NumeroTelefone,
                     t.Ativo,
-                    t.TipoTelefone.Id
+                    (TipoTelefoneEnum)t.TipoTelefone.Id
                 )));
         }
 

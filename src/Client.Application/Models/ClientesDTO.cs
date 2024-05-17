@@ -28,8 +28,8 @@ namespace Client.Application.Models
         public string NumeroTelefone { get; init; }
         public string Operadora { get; init; }
         public bool Ativo { get; init; }
-        public int IdTipoTelefone { get; init; }
-        public string TipoTelefone { get; init; }
+        public int IdTipoTelefone { get; set; }
+        public string TipoTelefone { get; set; }
     }
 
     public class ClienteMapping : Profile
@@ -45,7 +45,11 @@ namespace Client.Application.Models
     {
         public TelefoneMapping()
         {
-            CreateMap<TelefoneDomain, TelefoneDTO>();
+            CreateMap<TelefoneDomain, TelefoneDTO>().AfterMap((src, dest) =>
+            {
+                dest.TipoTelefone = src.TipoTelefone.ToString() ;
+                dest.IdTipoTelefone = src.TipoTelefone.Id;
+            });
         }
     }
 }
