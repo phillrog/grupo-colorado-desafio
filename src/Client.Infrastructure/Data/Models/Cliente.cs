@@ -19,6 +19,6 @@ namespace Client.Infrastructure.Data.Models
 
         public ICollection<Telefone> Telefones { get; set; }
         public int UsuarioInclusao { get; set; }
-        public DateTime DataInclusao { get; set; }
+        public DateTime DataInclusao { get; set; }        
     }
 }

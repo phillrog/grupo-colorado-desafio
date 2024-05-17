@@ -20,11 +20,14 @@ namespace Client.Infrastructure.Data.Configurations
             builder.Property(t => t.DataInclusao);
             builder.Property(t => t.UsuarioInclusao);
             builder.Property(t => t.Endereco).HasMaxLength(200);
-            builder.Property(t => t.NomeFantasia).HasMaxLength(200);
-            builder.Property(t => t.RazaoSocial).HasMaxLength(200);
+            builder.Property(t => t.NomeFantasia).HasMaxLength(200).IsRequired();
+            builder.Property(t => t.RazaoSocial).HasMaxLength(200).IsRequired();
             builder.Property(t => t.TipoPessoa).HasConversion<int>();
             builder.Property(t => t.Uf).HasMaxLength(2);
-            builder.Property(t => t.UsuarioInclusao);
+            
+            builder.Property(t => t.Documento).HasMaxLength(15).IsRequired();
+
+            builder.HasMany(t => t.Telefones).WithOne(d => d.Cliente).HasForeignKey(f => f.IdCliente);
         }
     }
 }

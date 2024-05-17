@@ -8,7 +8,7 @@ namespace Client.Application.Factories
     {
         public static IEnumerable<TelefoneDomain> Create(IEnumerable<TelefoneCreateCommand> command)
         {
-            return command.Select(x => new TelefoneDomain(Guid.NewGuid(), x.IdCliente, x.NumeroTelefone, x.Operadora, true, x.TipoTelefone));
+            return command.Select(x => new TelefoneDomain(Guid.NewGuid(), 0, x.NumeroTelefone, x.Operadora, true, x.TipoTelefone));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Client.Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<Telefone> builder)
         {
             builder.ToTable(nameof(Telefone));
-            builder.HasKey(e => e.Id);
+            builder.HasKey(e => new { e.NumeroTelefone, e.Operadora, e.IdCliente });
             builder.Property(t => t.Ativo);
             builder.Property(t => t.NumeroTelefone).HasMaxLength(12);
             builder.Property(t => t.Operadora).HasMaxLength(3);

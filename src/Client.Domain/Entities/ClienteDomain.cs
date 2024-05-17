@@ -7,12 +7,12 @@ namespace Client.Domain.Entities
     {
         public ClienteDomain(int id) : base(id) { }
 
-        public ClienteDomain(string razaoSocial, string nomeFantasia, int tipoPessoa, string documento, string endereco, string complemento, string bairro, string cidade, string cep, string uf, IEnumerable<TelefoneDomain> telefones)
+        public ClienteDomain(string razaoSocial, string nomeFantasia, TipoPessoaEnum tipoPessoa, string documento, string endereco, string complemento, string bairro, string cidade, string cep, string uf, IEnumerable<TelefoneDomain> telefones)
             : base(0)
         {
             RazaoSocial = razaoSocial;
             NomeFantasia = nomeFantasia;
-            TipoPessoa = (TipoPessoaEnum)tipoPessoa;
+            TipoPessoa = tipoPessoa;
             Documento = documento;
             Endereco = endereco;
             Complemento = complemento;
