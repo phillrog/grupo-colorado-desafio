@@ -1,4 +1,4 @@
-﻿using Client.Domain.Commom;
+﻿using Client.Domain.Interfaces;
 using Client.Domain.Enums;
 using Client.Domain.Exceptions;
 

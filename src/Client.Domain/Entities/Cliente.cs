@@ -1,4 +1,4 @@
-﻿using Client.Domain.Commom;
+﻿using Client.Domain.Interfaces;
 using Client.Domain.Enums;
 
 namespace Client.Domain.Entities
@@ -15,7 +15,7 @@ namespace Client.Domain.Entities
         public string Cidade { get; private set; }
         public string Cep { get; private set; }
         public string Uf { get; private set; }
-        public string DataInsercao { get; private set; }
-        public string UsuarioInsercao { get; private set; }
+
+        public Cliente() {}
     }
 }

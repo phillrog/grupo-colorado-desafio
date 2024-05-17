@@ -1,4 +1,4 @@
-﻿namespace Client.Domain.Commom
+﻿namespace Client.Domain.Interfaces
 {
     public abstract class Entity
     {

@@ -1,8 +1,9 @@
-﻿using Client.Domain.ValueObjects;
+﻿using Client.Domain.Interfaces;
+using Client.Domain.ValueObjects;
 
 namespace Client.Domain.Entities
 {
-    public class Telefone 
+    public class Telefone : Entity
     {
         public Guid Id { get; private set; }
         public int IdCliente { get; protected  set; }
@@ -14,5 +15,7 @@ namespace Client.Domain.Entities
         public string UsuarioInsercao { get; protected  set; }
         public Cliente  Cliente { get; protected  set; }
         public TipoTelefone TipoTelefone { get; set; }
+
+        public Telefone() {}
     }
 }
