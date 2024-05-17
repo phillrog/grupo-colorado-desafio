@@ -5,4 +5,5 @@ Desafio criar aplicação .NET
 
 # Migrations
 
-```dotnet ef database update --startup-project ..\src\Client.Api --project ..\src\Client.Infrastructure ```
+```dotnet ef database update --startup-project .\src\Client.Api --project .\src\Client.Infrastructure ```
+   

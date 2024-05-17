@@ -1,10 +1,9 @@
-﻿
-using Client.Application.Factories;
+﻿using Client.Application.Factories;
 using Client.Domain.Interfaces;
 
 namespace Client.Application.Clientes.Commands.Create
 {
-    public record CreateClienteCommand : IRequest<int>
+    public record CreateClienteCommand : IRequest<bool>
     {
         public string RazaoSocial { get; init; }
         public string NomeFantasia { get; init; }
@@ -16,21 +15,20 @@ namespace Client.Application.Clientes.Commands.Create
         public string Cidade { get; init; }
         public string Cep { get; init; }
         public string Uf { get; init; }
-        public IEnumerable<TelefoneCommand> Telefones { get; init; }
+        public IEnumerable<TelefoneCreateCommand> Telefones { get; init; }
 
     }
 
-    public record TelefoneCommand
+    public record TelefoneCreateCommand
     {
         public Guid Id { get; init; }
         public int IdCliente { get; init; }
         public string NumeroTelefone { get; init; }
         public string Operadora { get; init; }
-        public bool Ativo { get; init; }
         public int TipoTelefone { get; init; }
     }
 
-    public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommand, int>
+    public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommand, bool>
     {
         private readonly IClienteRepository _clienteRepository;
 
@@ -39,15 +37,15 @@ namespace Client.Application.Clientes.Commands.Create
             _clienteRepository = clienteRepository;
         }
 
-        public async Task<int> Handle(CreateClienteCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateClienteCommand request, CancellationToken cancellationToken)
         {
             var domain = ClienteFactory.Create(request);
 
             _clienteRepository.Add(domain);
 
-            await _clienteRepository.SaveChangesAsync(cancellationToken);
+            var result = await _clienteRepository.SaveChangesAsync(cancellationToken);
 
-            return domain.Id;
+            return await Task.FromResult(result > 0);
         }
     }
 }

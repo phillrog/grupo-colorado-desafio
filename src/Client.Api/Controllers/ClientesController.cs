@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Client.Application.Clientes.Commands.Create;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +10,12 @@ namespace Client.Api.Controllers
     [ApiController]
     public class ClientesController : ControllerBase
     {
+        private IMediator _mediator;
+
+        public ClientesController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
         // GET: api/<ClientesController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -24,8 +32,10 @@ namespace Client.Api.Controllers
 
         // POST api/<ClientesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CreateClienteCommand command)
         {
+            await _mediator.Send(command);
+            return Ok();
         }
 
         // PUT api/<ClientesController>/5

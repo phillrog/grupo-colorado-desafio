@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Client.Domain.Interfaces;
 
 namespace Client.Api.Configurations
 {
@@ -14,7 +15,7 @@ namespace Client.Api.Configurations
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddScoped<ClienteRepository, ClienteRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
 
             services.AddDbContext<ClienteDbContext>((sp, options) =>
             {

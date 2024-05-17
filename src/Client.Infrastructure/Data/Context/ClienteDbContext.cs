@@ -12,7 +12,7 @@ namespace Client.Infrastructure.Data.Context
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Telefone> Telefone { get; set; }
 
-        public override int SaveChanges()
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var modifiedEntries = ChangeTracker.Entries().Where(x => x.Entity is IEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
@@ -33,7 +33,7 @@ namespace Client.Infrastructure.Data.Context
                 Entry(entity).Property(x => x.UsuarioInclusao).IsModified = false;
             }
 
-            return base.SaveChanges();
+            return base.SaveChangesAsync(cancellationToken);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -41,5 +41,7 @@ namespace Client.Infrastructure.Data.Context
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.LogTo(Console.WriteLine);
     }
 }
