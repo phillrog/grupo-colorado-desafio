@@ -1,0 +1,86 @@
+﻿@page
+@using Client.Web.Areas.Clientes.Pages
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Cadastro de Clientes</h1>
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col pt-1">
+            <a asp-action="" class="btn btn-outline-primary">
+                <i class="fa-solid fa-plus"></i> Novo Cliente
+            </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].RazaoSocial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].NomeFantasia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].Endereco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].Complemento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].Bairro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].Cidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].Cep)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente[0].Uf)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Cliente)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RazaoSocial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeFantasia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Endereco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Complemento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bairro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cep)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Uf)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="fas fa-edit" title="Editar"></i></a>
+                        <a asp-page="./Details" class="btn btn-outline-warning" asp-route-id="@item.Id" title="Detalhes"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a asp-page="./Delete" class="btn btn-outline-danger" asp-route-id="@item.Id" title="Deletar"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
