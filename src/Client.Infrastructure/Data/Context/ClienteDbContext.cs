@@ -1,6 +1,7 @@
 ﻿using Client.Domain.Interfaces;
 using Client.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Client.Infrastructure.Data.Context
 {
@@ -33,6 +34,12 @@ namespace Client.Infrastructure.Data.Context
             }
 
             return base.SaveChanges();
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

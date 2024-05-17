@@ -4,10 +4,16 @@ using Client.Domain.Exceptions;
 
 namespace Client.Domain.ValueObjects
 {
-    public class TipoTelefone(TipoTelefoneEnum tipo) : ValueObject<TipoTelefone>
+    public class TipoTelefone : ValueObject<TipoTelefone>
     {
         public int Id { get; private set; }
         public string Descricao => ((TipoTelefoneEnum)Id).ToString();
+
+        public TipoTelefone() { }
+        public TipoTelefone(TipoTelefoneEnum tipo)
+        {
+            Id = (int)tipo;
+        }
 
         public static TipoTelefone From(TipoTelefoneEnum tipo)
         {

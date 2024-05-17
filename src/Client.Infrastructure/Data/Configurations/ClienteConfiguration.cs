@@ -11,6 +11,7 @@ namespace Client.Infrastructure.Data.Configurations
             builder.ToTable(nameof(Cliente));
 
             builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.Property(t => t.Bairro).HasMaxLength(200);
             builder.Property(t => t.Cep).HasMaxLength(14);
             builder.Property(t => t.Cidade).HasMaxLength(200);

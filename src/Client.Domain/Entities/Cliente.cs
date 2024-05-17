@@ -16,6 +16,8 @@ namespace Client.Domain.Entities
         public string Cep { get; private set; }
         public string Uf { get; private set; }
 
+        public ICollection<Telefone> Telefones { get; private set; }
+
         public Cliente() {}
     }
 }

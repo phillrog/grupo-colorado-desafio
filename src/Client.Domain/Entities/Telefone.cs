@@ -8,7 +8,6 @@ namespace Client.Domain.Entities
         public Guid Id { get; private set; }
         public int IdCliente { get; protected  set; }
         public string NumeroTelefone { get; protected  set; }
-        public int IdTipoTelefone { get; protected  set; }
         public string Operadora { get; protected  set; }
         public bool Ativo { get; protected  set; }
         public string DataInsercao { get; protected  set; }
