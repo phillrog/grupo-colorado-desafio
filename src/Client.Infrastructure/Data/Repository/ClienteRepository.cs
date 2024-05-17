@@ -21,7 +21,7 @@ namespace Client.Infrastructure.Data.Repository
 
         public async Task<IEnumerable<ClienteDomain>> GetAll()
         {
-            return await Task.FromResult(_context.Cliente.AsNoTracking().Select(ToDomain));
+            return await Task.FromResult(_context.Cliente.Include(d=> d.Telefones).AsNoTracking().Select(ToDomain).ToList());
         }
 
         public async Task<ClienteDomain> GetById(int id)

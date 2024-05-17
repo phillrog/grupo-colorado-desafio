@@ -1,4 +1,5 @@
 ﻿using Client.Application.Clientes.Commands.Create;
+using Client.Application.Clientes.Queries.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +19,9 @@ namespace Client.Api.Controllers
         }
         // GET: api/<ClientesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ClientesVM> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _mediator.Send(new GetAllClientesQuery());
         }
 
         // GET api/<ClientesController>/5
