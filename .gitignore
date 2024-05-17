@@ -1,0 +1,11 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Desafio/v17
+/Desafio/.vs/Desafio/FileContentIndex
+/src/Client.Api/obj
+/src/Client.Application/obj
+/src/Client.Domain/obj/Debug/net8.0
+/src/Client.Domain/obj
+/src/Client.Infrastructure/obj
