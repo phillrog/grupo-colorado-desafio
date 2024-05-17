@@ -26,7 +26,7 @@ namespace Client.Infrastructure.Data.Repository
 
         public async Task<ClienteDomain> GetById(int id)
         {
-            var entity = _context.Cliente.Include(d=> d.Telefones).First(d => d.Id == id);
+            var entity = await _context.Cliente.Include(d=> d.Telefones).FirstOrDefaultAsync(d => d.Id == id);
             if (entity == null)
                 return null;
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Client.Application.Clientes.Queries.GetById;
 using Client.Domain.Entities;
 using Client.Domain.Enums;
 
@@ -36,6 +37,7 @@ namespace Client.Application.Models
         public ClienteMapping()
         {
             CreateMap<ClienteDomain, ClientesDTO>();
+            CreateMap<ClienteDomain, ClienteVM>();
         }
     }
 
