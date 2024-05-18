@@ -1,0 +1,22 @@
+{
+  "Routes": [
+    //"clientesAPI": "https://localhost:5007",
+    {
+      "DownstreamPathTemplate": "/api/v1/clientes",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5007
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/clientes",
+      "UpstreamHttpMethod": [ "GET" ],
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "europe-central",
+        "Header": "Authorization"
+      }
+    }
+  ]
+}
