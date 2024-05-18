@@ -13,9 +13,22 @@
       "UpstreamPathTemplate": "/api/v1/clientes",
       "UpstreamHttpMethod": [ "GET" ],
       "FileCacheOptions": {
-        "TtlSeconds": 15,
-        "Region": "europe-central",
-        "Header": "Authorization"
+        "TtlSeconds": 15
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/clientes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5007
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/clientes/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "FileCacheOptions": {
+        "TtlSeconds": 15
       }
     }
   ]

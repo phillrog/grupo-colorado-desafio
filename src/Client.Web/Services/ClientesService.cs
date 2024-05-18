@@ -6,6 +6,7 @@ namespace Client.Web.Services
     public interface IClientesService
     {
         Task<ClientesViewModel> GetAllClients();
+        Task<ClienteViewModel> GetClientById(int id);
     }
 
     public class ClientesService : IClientesService
@@ -22,6 +23,12 @@ namespace Client.Web.Services
         {
             var response = await _client.GetAsync($"{_basePath}");
             return await response.ReadContentAs<ClientesViewModel>();
+        }
+
+        public async Task<ClienteViewModel> GetClientById(int id)
+        {
+            var response = await _client.GetAsync($"{_basePath}/{id}");
+            return await response.ReadContentAs<ClienteViewModel>();
         }
     }
 }
