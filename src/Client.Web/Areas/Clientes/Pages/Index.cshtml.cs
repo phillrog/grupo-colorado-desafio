@@ -1,7 +1,6 @@
-﻿using Client.Web.Models;
-using Client.Web.Services;
+﻿using Client.Web.Areas.Clientes.Models;
+using Client.Web.Areas.Clientes.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using NuGet.Protocol;
 
 namespace Client.Web.Areas.Clientes.Pages
 {
@@ -14,7 +13,7 @@ namespace Client.Web.Areas.Clientes.Pages
             _clientesService = clientesService;
         }
 
-        public IList<ClienteViewModel> Cliente { get; set; } = default!;
+        public IList<Cliente> Cliente { get; set; } = default!;
 
         public async Task OnGetAsync()
         {

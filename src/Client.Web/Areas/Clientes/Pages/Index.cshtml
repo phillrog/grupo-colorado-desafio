@@ -12,7 +12,7 @@
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col pt-1">
-            <a asp-action="" class="btn btn-outline-primary">
+            <a asp-page="./Create" class="btn btn-outline-primary">
                 <i class="fa-solid fa-plus"></i> Novo Cliente
             </a>
         </div>
@@ -84,3 +84,16 @@
             }
         </tbody>
     </table>
+
+    @section Scripts {
+        <script type="text/javascript">
+            (() => {
+                var msg = '@TempData["StatusMessage"]';
+
+                if (!msg) return;
+
+                if (msg.indexOf("falha") == -1) toastr.success(msg, "Cliente");
+                else toastr.error(msg, "Cliente");
+            })($);
+        </script>
+    }
