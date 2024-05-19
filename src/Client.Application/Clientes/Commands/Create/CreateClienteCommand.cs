@@ -21,10 +21,10 @@ namespace Client.Application.Clientes.Commands.Create
 
     public record TelefoneCreateCommand
     {
-        public Guid Id { get; init; }
+        public Guid? Id { get; init; }
         public string NumeroTelefone { get; init; }
         public string Operadora { get; init; }
-        public TipoTelefoneEnum TipoTelefone { get; init; }
+        public TipoTelefoneEnum IdTipoTelefone { get; init; }
     }
 
     public class CreateClienteCommandValidator : AbstractValidator<CreateClienteCommand>
@@ -57,7 +57,7 @@ namespace Client.Application.Clientes.Commands.Create
     {
         public TelefoneCreateCommandValidator()
         {
-            RuleFor(v => v.TipoTelefone).IsInEnum().Must(i => Enum.IsDefined(typeof(TipoTelefoneEnum), i));
+            RuleFor(v => v.IdTipoTelefone).IsInEnum().Must(i => Enum.IsDefined(typeof(TipoTelefoneEnum), i));
             RuleFor(v => v.NumeroTelefone).MaximumLength(12).NotEmpty();
             RuleFor(v => v.Operadora).MaximumLength(3).NotEmpty();
         }
