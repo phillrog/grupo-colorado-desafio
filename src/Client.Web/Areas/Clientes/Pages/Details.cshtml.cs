@@ -1,5 +1,5 @@
-﻿using Client.Web.Models;
-using Client.Web.Services;
+﻿using Client.Web.Areas.Clientes.Models;
+using Client.Web.Areas.Clientes.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,7 +14,7 @@ namespace Client.Web.Areas.Clientes.Pages
             _clientesService = clientesService;
         }
 
-        public ClienteViewModel Cliente { get; set; } = default!;
+        public Cliente Cliente { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
