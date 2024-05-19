@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Client.Web.Pages
 {
+    [Authorize()]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
@@ -16,5 +18,6 @@ namespace Client.Web.Pages
         {
 
         }
+
     }
 }

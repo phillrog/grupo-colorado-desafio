@@ -2,6 +2,8 @@ using Client.Web.Areas.Authentication;
 using Client.Web.Areas.Clientes.Services;
 using Client.Web.Data;
 using Client.Web.Data.Seed;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,26 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.Cookie.Name = "YourAppCookieName";
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    options.LoginPath = "/Identity/Account/Login";
+    // ReturnUrlParameter requires 
+    //using Microsoft.AspNetCore.Authentication.Cookies;
+    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+    options.SlidingExpiration = true;
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
 
 
 builder.Services.AddHttpClient<IClientesService, ClientesService>(
@@ -57,8 +79,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

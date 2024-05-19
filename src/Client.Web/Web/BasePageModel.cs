@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Client.Web.Areas.Clientes.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Client.Web.Areas.Clientes.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Client.Web.Web
 {
+    [Authorize]
     public class BasePageModel : PageModel
     {
         internal readonly IClientesService _clienteService;

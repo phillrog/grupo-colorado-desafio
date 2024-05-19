@@ -2,18 +2,25 @@
 using Client.Web.Areas.Clientes.Services;
 using Client.Web.Utils;
 using Client.Web.Web;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Client.Web.Areas.Clientes.Pages
 {
+    [Authorize]
     public class EditModel : BasePageModel
     {
-        public EditModel(IClientesService clienteService) : base(clienteService) { }
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public EditModel(IClientesService clienteService, IHttpContextAccessor httpContextAccessor) : base(clienteService)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             base.Initialize();
-
+            var user = _httpContextAccessor.HttpContext.User;
             try
             {
                 Cliente = await _clienteService.GetClientById(id ?? 0);
