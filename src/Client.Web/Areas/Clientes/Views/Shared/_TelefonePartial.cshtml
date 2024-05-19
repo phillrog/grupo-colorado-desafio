@@ -12,7 +12,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Telefones[0].NumeroTelefone)
             </th>
-            <th style="@(Model.EmEdicao ? "visibility: visible;" : "display: none; visibility: hidden;")">@Html.DisplayNameFor(model => model.Telefones[0].Ativo)</th>
+            <th>@Html.DisplayNameFor(model => model.Telefones[0].Ativo)</th>
             <th></th>
         </tr>
     </thead>
@@ -33,7 +33,9 @@
                     @Html.DisplayFor(modelItem => item.NumeroTelefone)
                 </td>
                 <td>
-                    @(item.Ativo.Value ? "Ativo" : "Inativo")
+                    <div class="form-check form-switch">
+                        <input class="form-control form-check-input" type="checkbox" name="Telefone.Ativo" id="Telefone.Ativo[@idx]" value="@(item.Ativo.Value ? "true" : "false")" checked="@(item.Ativo.Value)">
+                    </div>
                 </td>
                 <td>
                     <a href="javascript:void(0)" id="btnRemover" onclick="crud.functions.removeTelefone(@item.NumeroTelefone)" title="Remover"><i class="fas fa-trash"></i></a>

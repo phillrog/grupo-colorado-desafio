@@ -152,7 +152,7 @@ class Crud {
             this.#variaveis.tipoTelefone = $("#tipotelefone option:selected").text();
             this.#variaveis.operadora = $("#operadora").val();
             this.#variaveis.numeroTelefone = $("#numero").val();
-            this.#variaveis.ativo = $("#Telefone.Ativo").val();
+            this.#variaveis.ativo = $('#ativo').is(':checked');
             this.#variaveis.idCliente = $("#Cliente_Id").val();
 
             var data = {
@@ -160,7 +160,7 @@ class Crud {
                 TipoTelefone: this.#variaveis.tipoTelefone,
                 Operadora: this.#variaveis.operadora,
                 NumeroTelefone: this.#variaveis.numeroTelefone,
-                Ativo: this.#variaveis.ativo || true,
+                Ativo: this.#variaveis.ativo,
                 IdCliente: this.#variaveis.idCliente || 0
             };
 
@@ -170,6 +170,7 @@ class Crud {
             $("#tipotelefone option:nth(0)").attr('selected', 'true');
             $("#operadora").val('');
             $("#numero").val('');
+            $('#ativo').prop('checked', true);
         },
         valido: () => !this.#variaveis.idTipoTelefone || !this.#variaveis.operadora || !this.#variaveis.numeroTelefone
     };
