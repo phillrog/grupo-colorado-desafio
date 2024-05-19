@@ -19,6 +19,9 @@ namespace Client.Application.Models
         public string Cep { get; init; }
         public string Uf { get; init; }
         public IEnumerable<TelefoneDTO> Telefones { get; init; }
+        public int? UsuarioInclusao { get; set; }
+        public string NomeUsuario { get; set; }
+        public DateTime? DataInclusao { get; set; }
     }
 
     public class TelefoneDTO

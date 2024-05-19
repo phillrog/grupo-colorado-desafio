@@ -28,6 +28,7 @@ namespace Client.Infrastructure.Data.Configurations
             builder.Property(t => t.Documento).HasMaxLength(15).IsRequired();
 
             builder.HasMany(t => t.Telefones).WithOne(d => d.Cliente).HasForeignKey(f => f.IdCliente);
+            builder.HasOne(t => t.Usuario).WithMany(d => d.Clientes).HasForeignKey(f => f.UsuarioInclusao);
         }
     }
 }

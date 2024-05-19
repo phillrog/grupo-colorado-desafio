@@ -22,7 +22,7 @@ namespace Client.Infrastructure.Data.Repository
 
         public async Task<IEnumerable<ClienteDomain>> GetAll()
         {
-            return await Task.FromResult(_context.Cliente.Include(d=> d.Telefones).AsNoTracking().Select(ToDomain).ToList());
+            return await Task.FromResult(_context.Cliente.Include(d => d.Usuario).Include(d=> d.Telefones).AsNoTracking().Select(ToDomain).ToList());
         }
 
         public async Task<ClienteDomain> GetById(int id)
@@ -99,7 +99,10 @@ namespace Client.Infrastructure.Data.Repository
                     t.Operadora,
                     t.Ativo,
                     (TipoTelefoneEnum)t.TipoTelefone.Id
-                )));
+                )),
+                model.Usuario.Id,
+                model.Usuario.Nome,
+                model.DataInclusao);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)

@@ -22,6 +22,9 @@ namespace Client.Web.Areas.Clientes.Models
         [Display(Name = "UF")]
         public string Uf { get; set; }
         public List<Telefone> Telefones { get; set; }
+        public int? UsuarioInclusao { get; set; }
+        public string NomeUsuario { get; set; }
+        public DateTime? DataInclusao { get; set; }
         [NotMapped]
         public bool EmEdicao { get; set; }
 

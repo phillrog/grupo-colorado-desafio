@@ -11,6 +11,7 @@ namespace Client.Infrastructure.Data.Context
 
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Telefone> Telefone { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -25,7 +26,7 @@ namespace Client.Infrastructure.Data.Context
                 if (entry.State == EntityState.Added)
                 {
                     entity.DataInclusao = DateTime.Now;
-                    entity.UsuarioInclusao = 0; // sistema
+                    entity.UsuarioInclusao = 1; // admin
                     continue;
                 }
 
@@ -40,6 +41,7 @@ namespace Client.Infrastructure.Data.Context
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.Seed();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.LogTo(Console.WriteLine);
