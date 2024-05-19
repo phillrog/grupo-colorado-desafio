@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Desafio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -24,7 +24,10 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>                        
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="clientes" asp-page="/Index">Clientes</a>
                         </li>
@@ -34,14 +37,17 @@
             </div>
         </nav>
     </header>
-    
 
-     @RenderBody()
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
 
-    <footer class="border-top footer text-muted text-start">
-        <div style="padding: 0 3%">
-            &copy; 2024 - Desafio Grupo Colorado - Phillipe R. Souza for <strong>Sara</strong>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Client.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 

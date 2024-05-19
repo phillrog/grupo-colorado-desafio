@@ -4,7 +4,182 @@
     ViewData["Title"] = "Grupo Colorado - Desafio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="parallax">
+    <section class="under">
+        <div class="under-inner one text-center">
+            <h1 class="fixed box">Desafio Grupo Colorado</h1>
+        </div>
+    </section>
+    <section class="over">
+        <div class="over-inner centered">
+            <h3>Desafio</h3>
+            <p>Criar um CRUD de clientes usando ASP .NET Core no padrão MVC na versão mínima .NET 6.0. Oprojeto deverá conter duas camadas de apresentação Web API e Web App MVC.</p>
+        </div>
+    </section>
+    <section class="under text-center">
+        <div class="under-inner two">
+            <h2 class="fixed box">Solução</h2>
+        </div>
+    </section>
+    <section class="over">
+        <div class="over-inner centered ">
+            <p class="p-menor">
+                Desenvolvi um sistema robusto utilizando a tecnologia ASP.NET Core MVC com .NET versão 8.0, aplicando os princípios fundamentais do Domain-Driven Design (DDD) e a arquitetura de microsserviços. Ao seguir as melhores práticas de Programação Orientada a Objetos (POO), busquei garantir a coesão e baixo acoplamento em cada componente do sistema.
+
+                Para manter o código limpo e de fácil manutenção, adotei os princípios SOLID, enfatizando a Single Responsibility Principle (SRP), Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP) e Dependency Inversion Principle (DIP). Dessa forma, cada classe e módulo do sistema possui responsabilidades bem definidas, facilitando a extensão e a manutenção futura.
+
+                A fim de evitar a repetição de código e promover a reutilização, apliquei o conceito DRY (Don't Repeat Yourself), garantindo que cada parte do sistema seja implementada uma única vez, evitando redundâncias e promovendo a consistência.
+
+                Além disso, para manter a simplicidade e clareza do código, segui o princípio KISS (Keep It Simple, Stupid), priorizando soluções simples e diretas em vez de complexidades desnecessárias.
+
+                Na camada de API, adotei a arquitetura CQRS (Command Query Responsibility Segregation), separando as operações de leitura e escrita em comandos e consultas distintos. Isso proporciona uma melhor escalabilidade e desempenho, permitindo otimizações específicas para cada tipo de operação.
+
+                Para facilitar o acesso à API e promover a comunicação entre os microsserviços, implementei um API Gateway, que atua como um ponto de entrada único para a aplicação web, gerenciando as solicitações e roteando-as para os serviços correspondentes. Isso simplifica a integração entre os diferentes componentes do sistema e melhora a experiência do usuário final.
+
+                Em resumo, o sistema desenvolvido incorpora uma série de práticas e conceitos avançados, visando garantir a qualidade, a manutenibilidade e a escalabilidade da aplicação, ao mesmo tempo em que promove uma arquitetura modular e de fácil evolução.
+
+                Quanto à persistência de estado de objetos, o sistema adota uma estratégia cuidadosamente planejada para garantir a integridade e a consistência dos dados. Por meio de técnicas como o uso de ORM (Object-Relational Mapping) Entity Framework 8 e padrões de design como Repository, as operações de leitura e escrita são gerenciadas de forma eficiente e segura, garantindo que as informações sejam armazenadas de maneira confiável e acessíveis quando necessário no banco de dados local MS Sql Server.
+
+                No que diz respeito à autenticação e ao login, o sistema implementa um robusto mecanismo de autenticação baseado no framework Identity Default do ASP.NET Core. Esse framework fornece recursos abrangentes para gerenciar identidades de usuário, incluindo recursos como autenticação baseada em cookies, controle de acesso baseado em funções e políticas, entre outros. Dessa forma, é possível garantir que apenas usuários autenticados e autorizados tenham acesso às funcionalidades do sistema, protegendo assim os dados sensíveis e assegurando a segurança da aplicação como um todo.
+
+                Além dos princípios e práticas mencionados anteriormente, o sistema também utiliza chamadas assíncronas por meio de AJAX para proporcionar uma experiência de usuário mais fluida e responsiva. Essa abordagem permite que as interações com a interface ocorram de forma assíncrona, melhorando significativamente a usabilidade e a eficiência da aplicação.
+
+                Por fim, mas não menos importante, foi utilizado controle de estado de objeto com o dicionário TemData para a sessão.
+            </p>
+
+        </div>
+    </section>
+    <section class="under text-center">
+        <div class="under-inner three">
+            <h3 class="fixed box">Muito Obrigado</h3>
+        </div>
+    </section>
 </div>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 100%;
+        color: #ddd;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased !important;
+        text-rendering: optimizelegibility;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 64px;
+        line-height: 1.328125;
+        font-weight: 900;
+        font-size: 7rem;
+    }
+
+    p {
+        font-size: 3rem;
+    }
+
+    .p-menor {
+        font-size: 1.2rem !important;
+    }
+
+    body {
+        font-family: Georgia, serif;
+        font-size: 21px;
+        line-height: 1.57142857;
+    }
+
+    section {
+        height: 100vh;
+        width: 100%;
+        background-position: center;
+        &.over
+
+    {
+        position: relative;
+        z-index: 10;
+    }
+
+    .over-inner {
+        position: relative;
+    }
+
+    .under-inner {
+        color: white;
+        height: 100vh;
+        position: relative;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        padding-top: 20rem !important;
+    }
+
+    .one {
+        background-image: url(https://colorado.com.br/wp-content/uploads/2023/10/banner-colorado-1.jpg);
+    }
+
+    .two {
+        background-image: url(https://source.unsplash.com/random/?sugarcane)
+    }
+
+    .three {
+        background-image: url(https://source.unsplash.com/random/?heavy%20machines);
+    }
+
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        padding: 0 3%;
+        transform: translateY(-50%);
+    }
+
+    waypoints
+    .fixed {
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        opacity: 0;
+        transition: opacity 100ms linear;
+        z-index: 0;
+        margin: 0;
+    }
+
+    .locked {
+        position: fixed;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 1;
+        transition: opacity 100ms linear;
+    }
+    .box {
+        border: 3px solid;
+        margin: 0px 44px !important;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        
+        $('.under-inner').each(function () {
+            var $this = $(this);
+            $this.waypoint(function (direction) {
+                if (direction === 'down') {
+                    $this.children(".fixed").addClass('locked');
+                } else {
+                    $this.children(".fixed").removeClass('locked');
+                }
+            }, { offset: '60%' });
+        });
+        
+    });
+
+</script>
