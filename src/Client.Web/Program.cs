@@ -1,9 +1,8 @@
 using Client.Web.Areas.Authentication;
+using Client.Web.Areas.Clientes.Services;
 using Client.Web.Data;
 using Client.Web.Data.Seed;
-using Client.Web.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +23,8 @@ builder.Services.AddHttpClient<IClientesService, ClientesService>(
     c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ClientesApi"])
 );
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -35,10 +36,12 @@ app.Use(async (ctx, next) =>
     await next();
     if (ctx.Response.StatusCode == 404 && !ctx.Response.HasStarted)
     {
-        ctx.Request.Path = "/Pages404";
+        ctx.Request.Path = "/Error";
         await next();
     }
 });
+
+app.UseStatusCodePagesWithReExecute("/Error");
 
 app.UseHsts();
 

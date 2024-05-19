@@ -1,0 +1,164 @@
+﻿@page
+@using Client.Web.Areas.Clientes
+@using Client.Web.Areas.Clientes.Views.Shared
+@model Client.Web.Areas.Clientes.Pages.CreateModel
+
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Novo</h1>
+
+<form method="post" id="form">
+    <h4>Dados do Cliente</h4>
+    <hr />
+    <div class="container p-4 border">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Cliente.RazaoSocial" class="control-label"></label>
+                    <input asp-for="Cliente.RazaoSocial" class="form-control" />
+                    <span asp-validation-for="Cliente.RazaoSocial" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.NomeFantasia" class="control-label"></label>
+                    <input asp-for="Cliente.NomeFantasia" class="form-control" />
+                    <span asp-validation-for="Cliente.NomeFantasia" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.TipoPessoa" class="control-label"></label>
+                    <select asp-for="Cliente.TipoPessoa" asp-items="Model.TipoPessoas" class="form-control"></select>
+                    <span asp-validation-for="Cliente.TipoPessoa" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Documento" class="control-label"></label>
+                    <input asp-for="Cliente.Documento" class="form-control" />
+                    <span asp-validation-for="Cliente.Documento" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Endereco" class="control-label"></label>
+                    <input asp-for="Cliente.Endereco" class="form-control" />
+                    <span asp-validation-for="Cliente.Endereco" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Complemento" class="control-label"></label>
+                    <input asp-for="Cliente.Complemento" class="form-control" />
+                    <span asp-validation-for="Cliente.Complemento" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Bairro" class="control-label"></label>
+                    <input asp-for="Cliente.Bairro" class="form-control" />
+                    <span asp-validation-for="Cliente.Bairro" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Cidade" class="control-label"></label>
+                    <input asp-for="Cliente.Cidade" class="form-control" />
+                    <span asp-validation-for="Cliente.Cidade" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Cep" class="control-label"></label>
+                    <input asp-for="Cliente.Cep" class="form-control" />
+                    <span asp-validation-for="Cliente.Cep" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Uf" class="control-label"></label>
+                    <input asp-for="Cliente.Uf" class="form-control" />
+                    <span asp-validation-for="Cliente.Uf" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+<h4 class="py-3">Telefones</h4>
+<hr />
+
+<form id="formTelefone">
+    <div class="container p-4 border">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="Telefone.TipoTelefone" class="control-label"></label>
+                    <select asp-for="Telefone.IdTipoTelefone" id="tipotelefone" form="formTelefone" asp-items="Model.TipoTelefones" class="form-control"></select>
+                    <span asp-validation-for="Telefone.IdTipoTelefone" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="Telefone.Operadora" class="control-label"></label>
+                    <input asp-for="Telefone.Operadora" id="operadora" class="form-control" form="formTelefone" />
+                    <span asp-validation-for="Telefone.Operadora" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="Telefone.NumeroTelefone" class="control-label"></label>
+                    <input asp-for="Telefone.NumeroTelefone" id="numero" class="form-control" form="formTelefone" />
+                    <span asp-validation-for="Telefone.NumeroTelefone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 py-4">
+                <div class="form-group">
+                    <input type="button" value="Adicionar" id="btnAddTelefone" onclick="crud.functions.addNewTelefone(event)" class="btn btn-success" />
+                </div>
+            </div>
+            <hr />
+            <div id="contatos">
+                @Html.Partial("_TelefonePartial", Model.Cliente)
+            </div>
+        </div>
+        <input type="hidden" name="StatusMessage" asp-for="StatusMessage" />
+    </div>
+</form>
+<div class="row">
+    <div class="col py-3 text-end">
+        <div class="form-group">
+            <input type="submit" onclick="crud.functions.submit(event)" value="Salvar" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+
+<div class="vh-10">
+    <a asp-page="Index">Voltar</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">        
+        var crud = new Crud({ controlador: 'Create' });
+    </script>
+}
