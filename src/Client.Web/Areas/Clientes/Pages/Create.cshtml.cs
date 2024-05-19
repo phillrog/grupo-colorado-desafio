@@ -31,8 +31,8 @@ namespace Client.Web.Areas.Clientes.Pages
         [BindProperty]
         public Cliente Cliente { get; set; }
 
-        [TempData]
-        public string StatusMessage { get; set; }
+
+        public Message StatusMessage { get; set; }
 
         public IActionResult OnGet()
         {
@@ -68,11 +68,11 @@ namespace Client.Web.Areas.Clientes.Pages
             try
             {
                 await _clienteService.PostClient(cliente);
-                StatusMessage = "Cliente registrado com sucesso!";
+                GravarMensagem("sucesso", "Cliente registrado com sucesso!");
             }
             catch (Exception ex)
             {
-                StatusMessage = "Oops! Ocorreu uma falha inesperada, por favor tente mais tarde!";
+                GravarMensagem("erro", "Oops! Ocorreu uma falha inesperada, por favor tente mais tarde!");
             }
 
             return RedirectToPage("./Index");
@@ -137,5 +137,9 @@ namespace Client.Web.Areas.Clientes.Pages
             return TempData.Get<Cliente>("ClienteData");
         }
 
+        private void GravarMensagem(string tipo, string mensagem)
+        {
+            TempData.Put<Message>("StatusMessage", new Message { Tipo = tipo, Mensagem = mensagem });
+        }
     }
 }
