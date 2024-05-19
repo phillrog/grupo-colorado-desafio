@@ -13,7 +13,7 @@ namespace Client.Application.Clientes.Commands.Delete
 
         public async Task<bool> Handle(DeleteClienteCommand request, CancellationToken cancellationToken)
         {
-            var cliente = await _clienteRepository.GetById(request.Id);
+            var cliente = await _clienteRepository.GetByIdAsNoTracking(request.Id);
 
             Guard.Against.NotFound(request.Id, cliente);
 

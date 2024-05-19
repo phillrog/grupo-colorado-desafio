@@ -27,7 +27,7 @@ namespace Client.Infrastructure.Data.Repository
 
         public async Task<ClienteDomain> GetById(int id)
         {
-            var entity = await _context.Cliente.Include(d=> d.Telefones).FirstOrDefaultAsync(d => d.Id == id);
+            var entity = await _context.Cliente.Include(d=> d.Usuario).Include(d=> d.Telefones).FirstOrDefaultAsync(d => d.Id == id);
             if (entity == null)
                 return null;
 
@@ -92,7 +92,7 @@ namespace Client.Infrastructure.Data.Repository
                 model.Cidade,
                 model.Cep,
                 model.Uf,
-                model.Telefones.Select(t => new TelefoneDomain(
+                model.Telefones?.Select(t => new TelefoneDomain(
                     t.Id,
                     t.IdCliente,
                     t.NumeroTelefone,
@@ -100,8 +100,8 @@ namespace Client.Infrastructure.Data.Repository
                     t.Ativo,
                     (TipoTelefoneEnum)t.TipoTelefone.Id
                 )),
-                model.Usuario.Id,
-                model.Usuario.Nome,
+                model.Usuario?.Id,
+                model.Usuario?.Nome,
                 model.DataInclusao);
         }
 
@@ -112,7 +112,7 @@ namespace Client.Infrastructure.Data.Repository
 
         public async Task<ClienteDomain> GetByIdAsNoTracking(int id)
         {
-            var entity = await _context.Cliente.Include(d => d.Telefones).AsNoTracking().FirstOrDefaultAsync(d => d.Id == id);
+            var entity = await _context.Cliente.Include(d=> d.Usuario).Include(d => d.Telefones).AsNoTracking().FirstOrDefaultAsync(d => d.Id == id);
             if (entity == null)
                 return null;
 

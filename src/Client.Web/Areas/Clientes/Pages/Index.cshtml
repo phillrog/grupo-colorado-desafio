@@ -66,7 +66,7 @@
                     <td class="text-end">
                         <a asp-page="./Edit" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="fas fa-edit" title="Editar"></i></a>
                         <a asp-page="./Details" class="btn btn-outline-warning" asp-area="Clientes" asp-route-id="@item.Id" title="Detalhes"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        <a asp-page="./Delete" class="btn btn-outline-danger" asp-route-id="@item.Id" title="Deletar"><i class="fas fa-trash"></i></a>
+                        <a class="btn btn-outline-danger" href="javascript:void(0)"  onclick="crud.functions.confirma(@item.Id)" title="Deletar"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
             }
@@ -89,9 +89,28 @@
 
     </nav>
 
+    @Html.Partial("_ConfirmacaoModal")
+
     @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
         <script type="text/javascript">
+            var crud = new Crud('');
+            
             (() => {
+                $("#btnSim").click((e) => {
+                    e.preventDefault();
+                    var idCliente = $("#idClienteExcluir").val();
+                    crud.requests.deletar(idCliente).then((s) =>{
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 700);
+                    });
+
+                    $('#confirmaExcluir').modal('hide');
+                });
+
                 var msg = parserJson('@(TempData["StatusMessage"])');
 
                 if (!msg) return;
@@ -100,6 +119,9 @@
                 else if (msg['Tipo'] == 'erro') toastr.error(msg['Mensagem'], "Cliente");
                 else if (msg['Tipo'] == 'aviso') toastr.warning(msg['Mensagem'], "Cliente");
 
+                
+                    
+                
             })($);
 
             function sortTable(column) {
@@ -113,6 +135,7 @@
 
                 }
                 window.location.href = "?search=@(Model.Search)&column=" + column + "&orderBy=" + orderBy;
-            }
+            }            
         </script>
     }
+

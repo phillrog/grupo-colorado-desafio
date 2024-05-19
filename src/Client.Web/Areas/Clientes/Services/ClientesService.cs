@@ -9,6 +9,7 @@ namespace Client.Web.Areas.Clientes.Services
         Task<Cliente> GetClientById(int id);
         Task PostClient(Cliente client);
         Task PutClient(Cliente client);
+        Task DeleteClient(int id);
     }
 
     public class ClientesService : IClientesService
@@ -43,6 +44,14 @@ namespace Client.Web.Areas.Clientes.Services
         public async Task PutClient(Cliente client)
         {
             var response = await _client.PutAsJson($"{_basePath}/{client.Id}", client);
+            if (!response.IsSuccessStatusCode)
+                throw new Exception("Erro na execução da API");
+        }
+
+
+        public async Task DeleteClient(int id)
+        {
+            var response = await _client.DeleteAsync($"{_basePath}/{id}");
             if (!response.IsSuccessStatusCode)
                 throw new Exception("Erro na execução da API");
         }

@@ -74,6 +74,26 @@ class Crud {
                     }
                 });
             })
+        },
+        deletar: (id) => {
+            
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "POST",
+                    url: `./Clientes/Delete?handler=DeletarCliente&id=${id}`,
+                    headers: {
+                        RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+
+                    success: function (response) {
+                        resolve();                 
+                    },
+                    failure: function (response) {
+                        console.error(response);
+                        reject();
+                    }
+                });
+            })
         }
     };
 
@@ -141,6 +161,10 @@ class Crud {
             this.requests.ultimosDados().then((response) => {
                 this.#variaveis.telefones = Object.assign([], response['telefones']);
             });
+        },
+        confirma: (id) =>{
+            $('#idClienteExcluir').val(id);
+            $('#confirmaExcluir').modal('show');
         }
     };
 
