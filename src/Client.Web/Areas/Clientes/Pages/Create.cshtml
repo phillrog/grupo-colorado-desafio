@@ -129,9 +129,19 @@
                     <span asp-validation-for="Telefone.NumeroTelefone" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-3 py-4">
+            <div class="col-md-1">
                 <div class="form-group">
-                    <input type="button" value="Adicionar" id="btnAddTelefone" onclick="crud.functions.addNewTelefone(event)" class="btn btn-success" />
+                    <label class="form-check-label" for="Telefone.Ativo">Ativo ?</label>
+                    <div class="form-check form-switch">
+                        <input class="form-control form-check-input" type="checkbox" id="ativo"  name="Telefone.Ativo" id="Telefone.Ativo" value="@Model.Telefone.Ativo" checked>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 py-4">
+                <div class="form-group">
+                    <button value="Adicionar" id="btnAddTelefone" onclick="crud.functions.addNewTelefone(event)" class="btn btn-outline-success">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
                 </div>
             </div>
             <hr />

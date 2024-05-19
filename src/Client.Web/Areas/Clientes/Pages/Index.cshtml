@@ -13,6 +13,16 @@
 
 <div class="container p-4 border">
     <div class="row pb-2">
+        <div class="col">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" name="Search" value="@Model.Search"
+                       placeholder="Pesquisar por Razão Social ou Nome Fantasia ou CEP" aria-label="Search" />
+                <button class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+            </form>
+        </div>
+    </div>
+    <div class="row pb-2 py-3">
         <div class="col pt-1">
             <a asp-page="./Create" class="btn btn-outline-primary">
                 <i class="fa-solid fa-plus"></i> Novo Cliente
@@ -22,31 +32,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].RazaoSocial)
+                <th style="cursor:pointer" onclick="sortTable('RazaoSocial')">Razão Social</th>
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].NomeFantasia)
+                <th style="cursor:pointer" onclick="sortTable('NomeFantasia')">Nome Fantasia</th>
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].Endereco)
+                <th style="cursor:pointer" onclick="sortTable('Cep')">CEP</th>
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].Complemento)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].Bairro)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].Cidade)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].Cep)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente[0].Uf)
-                </th>
-                <th></th>
+
+                <th class="text-end">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -59,25 +52,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NomeFantasia)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Endereco)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Complemento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Bairro)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cidade)
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Cep)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Uf)
-                    </td>
-                    <td>
+
+                    <td class="text-end">
                         <a asp-page="./Edit" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="fas fa-edit" title="Editar"></i></a>
                         <a asp-page="./Details" class="btn btn-outline-warning" asp-area="Clientes" asp-route-id="@item.Id" title="Detalhes"><i class="fa-solid fa-magnifying-glass"></i></a>
                         <a asp-page="./Delete" class="btn btn-outline-danger" asp-route-id="@item.Id" title="Deletar"><i class="fas fa-trash"></i></a>
@@ -88,7 +68,7 @@
     </table>
 
     @section Scripts {
-        <script type="text/javascript">            
+        <script type="text/javascript">
             (() => {
                 var msg = parserJson('@(TempData["StatusMessage"])');
 
@@ -99,5 +79,18 @@
                 else if (msg['Tipo'] == 'aviso') toastr.warning(msg['Mensagem'], "Cliente");
 
             })($);
+
+            function sortTable(column) {
+                let orderBy = "desc";
+                let currentColumn = "@Model.column";
+                let currentorderBy = "@Model.orderBy";
+
+                if (column == currentColumn) {
+                    if (currentorderBy == "asc") { orderBy = "desc"; }
+                    else { orderBy = "asc"; }
+
+                }
+                window.location.href = "?search=@(Model.Search)&column=" + column + "&orderBy=" + orderBy;
+            }
         </script>
     }
