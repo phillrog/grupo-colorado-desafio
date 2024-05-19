@@ -44,6 +44,11 @@ namespace Client.Infrastructure.Data.Repository
         public void Update(ClienteDomain domain)
         {
             var model = ToModel(domain);
+            _context.Entry<Cliente>(model).State = EntityState.Modified;
+            foreach (var item in model.Telefones)
+            {
+                _context.Telefone.Add(item);
+            } 
             _context.Cliente.Update(model);
         }
 
@@ -90,8 +95,8 @@ namespace Client.Infrastructure.Data.Repository
                 model.Telefones.Select(t => new TelefoneDomain(
                     t.Id,
                     t.IdCliente,
-                    t.Operadora,
                     t.NumeroTelefone,
+                    t.Operadora,
                     t.Ativo,
                     (TipoTelefoneEnum)t.TipoTelefone.Id
                 )));
@@ -100,6 +105,15 @@ namespace Client.Infrastructure.Data.Repository
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<ClienteDomain> GetByIdAsNoTracking(int id)
+        {
+            var entity = await _context.Cliente.Include(d => d.Telefones).AsNoTracking().FirstOrDefaultAsync(d => d.Id == id);
+            if (entity == null)
+                return null;
+
+            return await Task.FromResult(ToDomain(entity));
         }
     }
 }

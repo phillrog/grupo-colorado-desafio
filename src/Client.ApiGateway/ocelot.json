@@ -41,7 +41,19 @@
         }
       ],
       "UpstreamPathTemplate": "/api/v1/clientes",
-      "UpstreamHttpMethod": [ "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/clientes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5007
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/clientes/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
     }
   ]
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Client.Web.Areas.Clientes.Models
 {
@@ -20,7 +21,9 @@ namespace Client.Web.Areas.Clientes.Models
         public string Cep { get; set; }
         [Display(Name = "UF")]
         public string Uf { get; set; }
-        public List<Telefone> Telefones { get; set; } 
+        public List<Telefone> Telefones { get; set; }
+        [NotMapped]
+        public bool EmEdicao { get; set; }
 
         public Cliente()
         {

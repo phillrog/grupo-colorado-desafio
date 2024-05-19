@@ -14,7 +14,7 @@ namespace Client.Application.Factories
 
         public static IEnumerable<TelefoneDomain> Create(IEnumerable<TelefoneUpdateCommand> command)
         {
-            return command.Select(x => new TelefoneDomain(x.Id, x.IdCliente, x.NumeroTelefone, x.Operadora, true, x.IdTipoTelefone));
+            return command.Select(x => new TelefoneDomain(x.Id == Guid.Empty ? Guid.NewGuid() : x.Id, x.IdCliente, x.NumeroTelefone, x.Operadora, true, x.IdTipoTelefone));
         }
     }
 }

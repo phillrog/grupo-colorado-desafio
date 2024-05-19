@@ -8,6 +8,7 @@ namespace Client.Web.Areas.Clientes.Services
         Task<ClientesLista> GetAllClients();
         Task<Cliente> GetClientById(int id);
         Task PostClient(Cliente client);
+        Task PutClient(Cliente client);
     }
 
     public class ClientesService : IClientesService
@@ -29,12 +30,19 @@ namespace Client.Web.Areas.Clientes.Services
         public async Task<Cliente> GetClientById(int id)
         {
             var response = await _client.GetAsync($"{_basePath}/{id}");
-            return await response.ReadContentAs<Cliente>();
+            return await response.ReadContentAsWihoutException<Cliente>();
         }
 
         public async Task PostClient(Cliente client)
         {
             var response = await _client.PostAsJson($"{_basePath}", client);
+            if (!response.IsSuccessStatusCode)
+                throw new Exception("Erro na execução da API");
+        }
+
+        public async Task PutClient(Cliente client)
+        {
+            var response = await _client.PutAsJson($"{_basePath}/{client.Id}", client);
             if (!response.IsSuccessStatusCode)
                 throw new Exception("Erro na execução da API");
         }

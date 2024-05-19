@@ -1,35 +1,41 @@
 ﻿using Client.Web.Areas.Clientes.Models;
 using Client.Web.Areas.Clientes.Services;
+using Client.Web.Utils;
+using Client.Web.Web;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Client.Web.Areas.Clientes.Pages
 {
-    public class DetailsModel : PageModel
-    {
-        private IClientesService _clientesService;
+    public class DetailsModel : BasePageModel
+    {        
+        public DetailsModel(IClientesService clientesService) : base(clientesService) { }
 
-        public DetailsModel(IClientesService clientesService)
-        {
-            _clientesService = clientesService;
-        }
-
+        public Message StatusMessage { get; set; }
         public Cliente Cliente { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                TempData.GravarMensagem("aviso", "Id inválido!");
+                return RedirectToPage("./Index");
             }
-
-            var result = await _clientesService.GetClientById(id);
-            if (result != null)
+            try
             {
-                Cliente = result;
-                return Page();
+                Cliente = await _clienteService.GetClientById(id.Value);
+                if (Cliente == null)
+                {
+                    TempData.GravarMensagem("erro", "Cliente não encontrado!");
+                    return RedirectToPage("./Index");
+                }
             }
-            return NotFound();
+            catch (Exception)
+            {
+                TempData.GravarMensagem("erro", "Oops! Ocorreu uma falha inesperada, por favor tente mais tarde!");
+                return RedirectToPage("./Index");
+            }
+            
+            return Page();
         }
     }
 }

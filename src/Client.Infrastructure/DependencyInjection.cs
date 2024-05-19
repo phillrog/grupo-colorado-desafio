@@ -16,6 +16,7 @@ namespace Client.Api.Configurations
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<ITelefoneRepository, TelefoneRepository>();
 
             services.AddDbContext<ClienteDbContext>((sp, options) =>
             {
