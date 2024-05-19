@@ -33,12 +33,13 @@
         <thead>
             <tr>
                 <th style="cursor:pointer" onclick="sortTable('RazaoSocial')">Razão Social</th>
-                </th>
-                <th style="cursor:pointer" onclick="sortTable('NomeFantasia')">Nome Fantasia</th>
-                </th>
-                <th style="cursor:pointer" onclick="sortTable('Cep')">CEP</th>
-                </th>
 
+                <th style="cursor:pointer" onclick="sortTable('NomeFantasia')">Nome Fantasia</th>
+
+                <th style="cursor:pointer" onclick="sortTable('Cep')">CEP</th>
+
+                <th>Usuário Inclusão</th>
+                <th>Data Inclusão</th>
                 <th class="text-end px-5" colspan="3">Ações</th>
             </tr>
         </thead>
@@ -56,7 +57,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Cep)
                     </td>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeUsuario)
+                    </td>
+                    <td>
+                        @(item.DataInclusao.HasValue ? item.DataInclusao.Value.ToString("dd/MM/yyyy HH:mm:ss") : "")
+                    </td>
                     <td class="text-end">
                         <a asp-page="./Edit" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="fas fa-edit" title="Editar"></i></a>
                         <a asp-page="./Details" class="btn btn-outline-warning" asp-area="Clientes" asp-route-id="@item.Id" title="Detalhes"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -66,6 +72,22 @@
             }
         </tbody>
     </table>
+
+    <nav>
+        <ul class="pagination">
+
+            @for (int i = 1; i <= Model.totalpage; i++)
+            {
+                string active = "";
+                if (i == Model.pageIndex) active = active;
+                <li class="page-item" @active aria-current="page" >
+                    <a style="@(i == Model.pageIndex ? "background-color: #ececec;" : "")" class="page-link btn-primary" href="?pageindex=@(i)&Search=@Model.Search&column=@Model.column&orderBy=@Model.orderBy">@i</a>
+                </li>
+
+            }
+        </ul>
+
+    </nav>
 
     @section Scripts {
         <script type="text/javascript">

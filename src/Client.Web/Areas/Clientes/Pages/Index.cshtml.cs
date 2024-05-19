@@ -23,7 +23,11 @@ namespace Client.Web.Areas.Clientes.Pages
         public string column = "NomeFantasia";
         public string orderBy = "desc";
 
-        public async Task OnGetAsync(string? search, string? column, string? orderBy)
+        public int pageIndex = 1;
+        public int totalpage = 0;
+        private readonly int pageSize = 5;
+
+        public async Task OnGetAsync(int? pageIndex, string? search, string? column, string? orderBy)
         {
             var result = await _clientesService.GetAllClients();
             var query = new List<Cliente>(result.Clientes);
@@ -78,6 +82,15 @@ namespace Client.Web.Areas.Clientes.Pages
                 }
             }
 
+            if (pageIndex == null || pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
+            this.pageIndex = (int)pageIndex;
+
+            decimal count = query.Count();
+            totalpage = (int)Math.Ceiling(count / pageSize);
+            query = query.Skip((this.pageIndex - 1) * pageSize).Take(pageSize).ToList();            
 
             Cliente = query;            
         }
