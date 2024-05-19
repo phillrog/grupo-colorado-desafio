@@ -1,4 +1,5 @@
 ﻿@page
+@using Client.Web.Areas.Clientes
 @using Client.Web.Areas.Clientes.Pages
 @using Client.Web.Utils
 @model IndexModel
@@ -87,12 +88,7 @@
     </table>
 
     @section Scripts {
-        <script type="text/javascript">
-            function parserJson(valor) {
-                if (!valor) return valor;
-
-                return JSON.parse(new DOMParser().parseFromString(valor, "text/html").documentElement.textContent);
-            }
+        <script type="text/javascript">            
             (() => {
                 var msg = parserJson('@(TempData["StatusMessage"])');
 
@@ -101,6 +97,7 @@
                 if (msg['Tipo'] == 'sucesso') toastr.success(msg['Mensagem'], "Cliente");
                 else if (msg['Tipo'] == 'erro') toastr.error(msg['Mensagem'], "Cliente");
                 else if (msg['Tipo'] == 'aviso') toastr.warning(msg['Mensagem'], "Cliente");
+
             })($);
         </script>
     }

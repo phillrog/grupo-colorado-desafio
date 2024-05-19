@@ -16,5 +16,19 @@ namespace Client.Web.Utils
             tempData.TryGetValue(key, out o);
             return o == null ? null : JsonConvert.DeserializeObject<T>((string)o);
         }
+
+        public static void GravarMensagem(this ITempDataDictionary tempData, string tipo, string mensagem)
+        {
+            tempData.Put<Message>("StatusMessage", new Message { Tipo = tipo, Mensagem = mensagem });
+        }
+
+        public static void Limpar(this ITempDataDictionary tempData)
+        {
+            foreach (var key in tempData.Keys.ToList())
+            {
+                tempData.Remove(key);
+            }
+            tempData.Clear();
+        }
     }
 }

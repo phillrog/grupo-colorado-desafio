@@ -1,5 +1,7 @@
 ﻿using Client.Web.Areas.Clientes.Models;
 using Client.Web.Areas.Clientes.Services;
+using Client.Web.Utils;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Client.Web.Areas.Clientes.Pages
@@ -18,7 +20,7 @@ namespace Client.Web.Areas.Clientes.Pages
         public async Task OnGetAsync()
         {
             var result = await _clientesService.GetAllClients();
-            Cliente = result.Clientes.ToList();
+            Cliente = result.Clientes.ToList();            
         }
     }
 }

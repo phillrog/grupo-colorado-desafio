@@ -1,8 +1,10 @@
-﻿namespace Client.Web.Utils
+﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
+namespace Client.Web.Utils
 {
     public record Message
     {
         public string Tipo { get; init; }
-        public string Mensagem { get; init; }
+        public string Mensagem { get; init; }        
     }
 }

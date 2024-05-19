@@ -54,6 +54,16 @@ namespace Client.Web.Utils
             return httpClient.PutAsync(url, content);
         }
 
+        public static async Task<T> ReadContentAsWihoutException<T>(
+            this HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode) return default;
+
+            var dataAsString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonSerializer.Deserialize<T>(dataAsString,
+                new JsonSerializerOptions
+                { PropertyNameCaseInsensitive = true });
+        }
 
     }
 }

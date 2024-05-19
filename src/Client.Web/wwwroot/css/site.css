@@ -20,3 +20,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+visible {
+    visibility: visible;
+}
+
+hide {
+    display: none;
+    visibility: hidden;
+}

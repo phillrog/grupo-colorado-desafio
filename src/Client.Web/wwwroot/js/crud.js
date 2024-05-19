@@ -2,10 +2,12 @@
 class Crud {
     #variaveis = {
         controlador: '',
+        idCliente: 0,
         idTipoTelefone: '',
         tipoTelefone: '',
         operadora: '',
         numeroTelefone: '',
+        ativo:'',
         telefones: []
     }
 
@@ -91,7 +93,7 @@ class Crud {
 
             this.requests.ultimosDados().then((response) => {
                 model = response;
-
+                model['telefones'] = this.#variaveis.telefones || [];
                 model['telefones'].push(data);
                 this.requests.addTelefone(model).then((d) => {
                     this.#variaveis.telefones = Object.assign([], model['telefones']);
@@ -134,6 +136,11 @@ class Crud {
             $("#form").submit();
             return true;
 
+        },
+        load: () => {
+            this.requests.ultimosDados().then((response) => {
+                this.#variaveis.telefones = Object.assign([], response['telefones']);
+            });
         }
     };
 
@@ -145,12 +152,16 @@ class Crud {
             this.#variaveis.tipoTelefone = $("#tipotelefone option:selected").text();
             this.#variaveis.operadora = $("#operadora").val();
             this.#variaveis.numeroTelefone = $("#numero").val();
+            this.#variaveis.ativo = $("#Telefone.Ativo").val();
+            this.#variaveis.idCliente = $("#Cliente_Id").val();
 
             var data = {
                 IdTipoTelefone: Number(this.#variaveis.idTipoTelefone),
                 TipoTelefone: this.#variaveis.tipoTelefone,
                 Operadora: this.#variaveis.operadora,
-                NumeroTelefone: this.#variaveis.numeroTelefone
+                NumeroTelefone: this.#variaveis.numeroTelefone,
+                Ativo: this.#variaveis.ativo || true,
+                IdCliente: this.#variaveis.idCliente || 0
             };
 
             return data;
@@ -164,3 +175,8 @@ class Crud {
     };
 }
 
+function parserJson(valor) {
+    if (!valor) return valor;
+
+    return JSON.parse(new DOMParser().parseFromString(valor, "text/html").documentElement.textContent);
+}
