@@ -58,3 +58,8 @@ Migrations relacionado as tabelas cliente, telefone
 Migrations relacionado ao Identity
 
 ```dotnet ef database update --startup-project .\src\Client.Web --project .\src\Client.Web ```
+
+# 🔨 Projeto
+![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/88204323-4476-4ee8-a9b6-8f88c5ffc865)
+
+# 💎 Resultado
