@@ -1,0 +1,28 @@
+name: Build-Versao-Docker
+
+on:
+  push:
+    branches:
+    - versao-docker
+  pull_request:
+    branches:
+    - versao-docker
+
+jobs:
+  docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Inicia containers
+      run: docker-compose -f "docker-compose.yml" up -d --build
+    
+    - name: Testa
+        run: docker run --network container:client.web appropriate/curl -s --retry 10 --retry-connrefused https://localhost:8080/    
+
+    - name: Para containers
+      if: always()
+      run: docker-compose -f "docker-compose.yml" down
