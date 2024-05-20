@@ -14,18 +14,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Inicia containers
-      run: docker-compose -f "./docker/docker-compose.yml" -f "./docker/docker-compose.override.yml" up -d --build
-
-    - name: Verifica Conatainers
-      id: check  
-      run: docker ps        
+    
       
     - name: Teste Request
-      run: http_response=$(curl http://client.api:5006/swagger/index.html -o /dev/null -w '%{http_code}\n' -s); if [ $http_response != "200" ]; then echo "Ooooppssss container não subiu" ; else echo "Manda bala amigão tudo certo ;) heHehEhehEHHEH"; fi;
+      run: \
+        CODE=`curl --write-out '%{http_code}' \
+        --silent \
+        --output /dev/null \
+        --request GET \
+        --url 'https://google.com' \        
+        }'`
+
+        if [ $CODE!="200" ] 
+        then
+            echo "FAILURE"
+        else
+            echo "SUCCESS"
+        fi
     
-    - name: Parar containers
-      run: docker-compose --f "./docker/docker-compose.yml" -f "./docker/docker-compose.override.yml" down
+    
