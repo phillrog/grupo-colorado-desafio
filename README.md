@@ -17,11 +17,11 @@
    1. [9.3 Client.Web:](#web)
 10. [Projeto:](#projeto)
 11. [Resultado:](#resultado)
-   1. [11.1 Swagger:](#resultado_1)
-   1. [11.2 Home:](#resultado_2)
-   1. [11.3 Área do Cliente:](#resultado_3)
-   1. [11.4 Mensagens:](#resultado_4)
-   1. [11.5 Login:](#resultado_5)
+     1. [11.1 Swagger:](#resultado_1)
+     1. [11.2 Home:](#resultado_2)
+     1. [11.3 Área do Cliente:](#resultado_3)
+     1. [11.4 Mensagens:](#resultado_4)
+     1. [11.5 Login:](#resultado_5)
 <!-- /MarkdownTOC -->
 </details>
 
