@@ -1,5 +1,4 @@
-# Build
-![example branch parameter](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=main)
+[![Build-Desafio](https://github.com/phillrog/grupo-colorado-desafio/actions/workflows/build.yml/badge.svg)](https://github.com/phillrog/grupo-colorado-desafio/actions/workflows/build.yml)
 
 # Sumário
 <details>
