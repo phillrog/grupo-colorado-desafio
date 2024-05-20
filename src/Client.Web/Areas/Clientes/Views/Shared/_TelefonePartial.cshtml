@@ -34,10 +34,10 @@
                 </td>
                 <td>
                     <div class="form-check form-switch">
-                        <input class="form-control form-check-input" type="checkbox" name="Telefone.Ativo" id="Telefone.Ativo[@idx]" value="@(item.Ativo.Value ? "true" : "false")" checked="@(item.Ativo.Value)">
+                        <input class="form-control form-check-input" type="checkbox" name="Telefone.Ativo" id="Telefone.Ativo[@idx]" value="@(item.Ativo.Value ? "true" : "false")" checked="@(item.Ativo.Value)" @(Model.EmDetalhes ? "disabled": "")>
                     </div>
                 </td>
-                <td>
+                <td style="@(Model.EmDetalhes ? "visibility: hidden": "")">
                     <a href="javascript:void(0)" id="btnRemover" onclick="crud.functions.removeTelefone(@item.NumeroTelefone)" title="Remover"><i class="fas fa-trash"></i></a>
                 </td>
 

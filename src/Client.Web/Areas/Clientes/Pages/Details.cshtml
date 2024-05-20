@@ -9,72 +9,98 @@
 <h1>Detalhes</h1>
 
 <div>
-    <h4>Cliente</h4>
+    <h4>Dados do Cliente</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.RazaoSocial)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.RazaoSocial)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.NomeFantasia)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.NomeFantasia)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.TipoPessoa)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.TipoPessoa)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Documento)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Documento)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Endereco)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Endereco)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Complemento)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Complemento)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Bairro)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Bairro)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Cidade)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Cidade)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Cep)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Cep)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Uf)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Uf)
-        </dd>        
-    </dl>
+    <div class="container p-4 border">
+        <input type="hidden" form="form" asp-for="Cliente.Id" value="@Model.Cliente.Id" name="Cliente.Id" class="form-control" />
+        <div class="row">
+            <div class="col-md-6">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Cliente.RazaoSocial" class="control-label"></label>
+                    <input asp-for="Cliente.RazaoSocial" class="form-control" disabled/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.NomeFantasia" class="control-label"></label>
+                    <input asp-for="Cliente.NomeFantasia" class="form-control" disabled />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.TipoPessoa" class="control-label"></label>
+                    <select asp-for="Cliente.TipoPessoa" asp-items="Model.TipoPessoas" class="form-control" disabled></select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Documento" class="control-label"></label>
+                    <input asp-for="Cliente.Documento" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Endereco" class="control-label"></label>
+                    <input asp-for="Cliente.Endereco" class="form-control" disabled />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Complemento" class="control-label"></label>
+                    <input asp-for="Cliente.Complemento" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Bairro" class="control-label"></label>
+                    <input asp-for="Cliente.Bairro" class="form-control" disabled />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Cidade" class="control-label"></label>
+                    <input asp-for="Cliente.Cidade" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Cep" class="control-label"></label>
+                    <input asp-for="Cliente.Cep" class="form-control" disabled />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente.Uf" class="control-label"></label>
+                    <input asp-for="Cliente.Uf" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
-<div>
+<h4 class="py-3">Telefones</h4>
+<hr />
+<div class="container p-4 border">
+    <div class="row">
+        <div id="contatos">
+            @Html.Partial("_TelefonePartial", Model.Cliente)
+        </div>
+    </div>
+</div>
+
+<div class="vh-10 py-5">
     <a asp-page="./Edit" asp-route-id="@Model.Cliente.Id">Editar</a> |
     <a asp-page="./Index">Voltar</a>
 </div>

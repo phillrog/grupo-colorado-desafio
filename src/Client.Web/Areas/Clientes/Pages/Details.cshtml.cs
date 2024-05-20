@@ -9,12 +9,10 @@ namespace Client.Web.Areas.Clientes.Pages
     public class DetailsModel : BasePageModel
     {        
         public DetailsModel(IClientesService clientesService) : base(clientesService) { }
-
-        public Message StatusMessage { get; set; }
-        public Cliente Cliente { get; set; } = default!;
-
+        
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            base.Initialize();
             if (id == null)
             {
                 TempData.GravarMensagem("aviso", "Id inválido!");
@@ -34,7 +32,7 @@ namespace Client.Web.Areas.Clientes.Pages
                 TempData.GravarMensagem("erro", "Oops! Ocorreu uma falha inesperada, por favor tente mais tarde!");
                 return RedirectToPage("./Index");
             }
-            
+            Cliente.EmDetalhes = true;
             return Page();
         }
     }

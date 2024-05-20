@@ -27,7 +27,8 @@ namespace Client.Web.Areas.Clientes.Models
         public DateTime? DataInclusao { get; set; }
         [NotMapped]
         public bool EmEdicao { get; set; }
-
+        [NotMapped]
+        public bool EmDetalhes { get; set; }
         public Cliente()
         {
             Telefones = new List<Telefone>();
