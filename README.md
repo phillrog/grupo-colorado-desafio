@@ -13,10 +13,15 @@
 8. [Técnicas:](#tecnicas)
 9. [Migrations:](#migrations)
    1. [9.1 Seed:](#seed)
-   2. [9.2 Client.Infrastructure:](#infra)
-   3. [9.3 Client.Web:](#web)
+   1. [9.2 Client.Infrastructure:](#infra)
+   1. [9.3 Client.Web:](#web)
 10. [Projeto:](#projeto)
 11. [Resultado:](#resultado)
+   1. [11.1 Swagger:](#resultado_1)
+   1. [11.2 Home:](#resultado_2)
+   1. [11.3 Área do Cliente:](#resultado_3)
+   1. [11.4 Mensagens:](#resultado_4)
+   1. [11.5 Login:](#resultado_5)
 <!-- /MarkdownTOC -->
 </details>
 
@@ -106,16 +111,20 @@ Migrations relacionado ao Identity
 # 🔨 10 - Projeto
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/88204323-4476-4ee8-a9b6-8f88c5ffc865)
 
+<a id="resultado"></a>
 # 💎 11 - Resultado
 
+<a id="resultado_1"></a>
 ### Swagger
 
 ![doc1](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/96ba93d2-66e8-4ca6-80b9-6f631dfb0c91)
 
+<a id="resultado_2"></a>
 ### Home
 
 ![doc2](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/24b67584-ba7a-4a8d-99a3-6873c8741121)
 
+<a id="resultado_3"></a>
 ### Área Clientes
 Index 
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/5aa133f3-0a23-4163-9954-8ed916d45250)
@@ -134,6 +143,7 @@ Exclusão
 
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/5600d903-270b-47a7-ab16-87cd89e46a7d)
 
+<a id="resultado_4"></a>
 # Mensagens
 Dados
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/4b64fb44-c5f8-4544-b127-ab440a74ccc7)
@@ -146,7 +156,7 @@ Telefones
 404
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/25837c05-e15f-4ed6-b512-3c9b2ebced26)
 
-
+<a id="resultado_5"></a>
 ### Login
 
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/1792fa68-f9eb-46ae-a0dc-ec91a36feca6)
