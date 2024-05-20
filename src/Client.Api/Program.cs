@@ -1,6 +1,7 @@
 using Client.Api.Configurations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using NSwag;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -29,14 +30,31 @@ builder.Services.AddSingleton(s => serializerOptions);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddOpenApiDocument(options =>
+{
+    options.PostProcess = document =>
+    {
+        document.Info = new OpenApiInfo
+        {
+            Version = "v1",
+            Title = "Client API",
+            Description = "Desafio Grupo Colorado - API de Cadastros de Clientes",
+            Contact = new OpenApiContact
+            {
+                Name = "Phillipe R. Souza",
+                Url = "https://br.linkedin.com/in/phillrog"
+            },
+            
+        };
+    };
+});
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseOpenApi();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
