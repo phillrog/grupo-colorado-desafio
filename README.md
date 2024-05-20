@@ -21,6 +21,7 @@
      1. [11.3 Área do Cliente:](#resultado_3)
      1. [11.4 Mensagens:](#resultado_4)
      1. [11.5 Login:](#resultado_5)
+12. [Endereços:](#enderecos)
 <!-- /MarkdownTOC -->
 </details>
 
@@ -145,5 +146,10 @@ Telefones
 
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/1792fa68-f9eb-46ae-a0dc-ec91a36feca6)
 
-
-
+<a id="enderecos"></a>
+# 📚 12 - Endereços
+Caminhos das aplicações:
+- Client.Web
+     - https://localhost:8080/
+- Client.Api
+     - https://localhost:5000/swagger/index.html
