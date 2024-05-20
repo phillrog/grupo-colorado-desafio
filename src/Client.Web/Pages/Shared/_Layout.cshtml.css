@@ -46,3 +46,41 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+
+
+#container {
+    display: flex;
+}
+
+.col-side {
+    flex: 0 0 10px;
+    align-content: end;
+    margin: -5px 0;
+}
+
+#col1 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#col2 {
+    flex: 1;
+    display: flex;
+    margin: -8px 0 !important;
+    font-size: 21px;
+}
+
+#col3 {
+    display: flex;
+    margin: -12px 0 !important;
+    width: 22rem;
+    min-width: 45rem;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+#col3 button {
+    font-size: 21px !important;
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Desafio</title>
+    <title>@ViewData["Title"] - Grupo Colorado - Desafio </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Client.Web.styles.css" asp-append-version="true" />
@@ -13,26 +13,36 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="background-color: #ececec !important;">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Desafio</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="clientes" asp-page="/Index">Clientes</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+                <div id="container">
+                    <div class="col-side" id="col1">
+                        <img style="padding: 10px;    height: 68px;" width="180" height="80" alt="Grupo Colorado" src="https://www.colorado.com.br/wp-content/uploads/2023/10/logo-grupo-colorado-180px-x-80px-1.png">
+                        <a class="navbar-brand" asp-area="" asp-page="/Index">Grupo Colorado - Desafio</a>
+
+                    </div>
+                    <div class="" id="col2">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" style="text-decoration: underline;" asp-area="clientes" asp-page="/Index">Clientes</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <div class="col-side" id="col3">
+                        <partial name="_LoginPartial" />
+                    </div>
+
                 </div>
             </div>
         </nav>
@@ -47,7 +57,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Client.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2024 - Desafio Grupo Colorado - Phillipe R. Souza for <strong>Sara</strong>
         </div>
     </footer>
 
