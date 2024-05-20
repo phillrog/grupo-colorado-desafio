@@ -1,3 +1,5 @@
+# Versão docker container
+
 # Sumário
 <details>
 <summary><b>(click para expandir)</b></summary>
@@ -11,10 +13,7 @@
 6. [Tecnologias:](#tecnologias)
 7. [Biliotecas Javascript:](#bibliotecas)
 8. [Técnicas:](#tecnicas)
-9. [Migrations:](#migrations)
-   1. [9.1 Seed:](#seed)
-   1. [9.2 Client.Infrastructure:](#infra)
-   1. [9.3 Client.Web:](#web)
+9. [Executar:](#executar)
 10. [Projeto:](#projeto)
 11. [Resultado:](#resultado)
      1. [11.1 Swagger:](#resultado_1)
@@ -22,6 +21,7 @@
      1. [11.3 Área do Cliente:](#resultado_3)
      1. [11.4 Mensagens:](#resultado_4)
      1. [11.5 Login:](#resultado_5)
+12. [Endereços:](#enderecos)
 <!-- /MarkdownTOC -->
 </details>
 
@@ -87,25 +87,10 @@ Criar um CRUD cadastro de cliente ASP .NET Core. ⭐
 - paginação
 - pesquisa e ordenação em table
 
-<a id="migrations"></a>
-# 🔎 9 - Migrations:
-
-<a id="seed"></a>
-### 💥 9.1 - Seed:
-Usuário: admin@teste.com.br
-Senha: Admin123#
-
-<a id="infra"></a>
-### 💥 9.2 - Client.Infrastructure:
-Migrations relacionado as tabelas cliente, telefone
-
-```dotnet ef database update --startup-project .\src\Client.Api --project .\src\Client.Infrastructure ```
-
-<a id="web"></a>
-### 💥 9.3 - Client.Web:
-Migrations relacionado ao Identity
-
-```dotnet ef database update --startup-project .\src\Client.Web --project .\src\Client.Web ```
+<a id="executar"></a>
+# 🔎 9 - Executar:
+Abra a pasta docker e execute o arquivo no terminal .\executar.ps1. Assim será efetuado a limpeza dos containers e execução do docker-compose.
+Anteção: Irá apagar todos os container em execução.
 
 <a id="projeto"></a>
 # 🔨 10 - Projeto
@@ -161,5 +146,10 @@ Telefones
 
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/1792fa68-f9eb-46ae-a0dc-ec91a36feca6)
 
-
-
+<a id="enderecos"></a>
+# 📚 12 - Endereços
+Caminhos das aplicações:
+- Client.Web
+     - https://localhost:8080/
+- Client.Api
+     - https://localhost:5000/swagger/index.html
