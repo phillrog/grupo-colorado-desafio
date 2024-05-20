@@ -19,3 +19,5 @@
 /src/Client.Web/obj
 /src/Client.ApiGateway/bin/Debug/net8.0
 /src/Client.ApiGateway/obj
+/docker/bin/Debug
+/docker/obj

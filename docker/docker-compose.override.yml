@@ -1,0 +1,65 @@
+version: '3.4'
+
+services:
+  mssql:     
+    ports:
+        - "1435:1433"
+    environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=Secret1234        
+    volumes:
+        - mssql_data:/var/opt/mssql
+    networks:
+        - local
+
+  client.apigateway:
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_HTTPS_PORTS=5000
+        - ASPNETCORE_HTTP_PORTS=5001
+    ports:
+        - "4000:5999"
+    volumes:
+        - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+        - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    networks:
+        - local 
+      
+  client.api:
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_HTTPS_PORTS=5005
+        - ASPNETCORE_HTTP_PORTS=5006
+    ports:
+        - "5000:5005"
+    volumes:
+        - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+        - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+        - mssql
+    networks:
+        - local 
+  
+  client.web:
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_HTTPS_PORTS=6000
+        - ASPNETCORE_HTTP_PORTS=6001
+    ports:
+        - "8080:6000"
+    volumes:
+        - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+        - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+        - mssql
+        - client.api
+    networks:
+        - local 
+
+volumes:
+  mssql_data:
+    driver: local       
+
+networks:
+    local:
+        driver: bridge    

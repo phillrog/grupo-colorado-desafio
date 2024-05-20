@@ -4,8 +4,10 @@ using Client.Web.Data;
 using Client.Web.Data.Seed;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +45,22 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddHttpClient<IClientesService, ClientesService>(
     c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ClientesApi"])
-);
+).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler()
+{
+    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+});
+
+builder.Services.AddAntiforgery(options =>
+{
+    options.FormFieldName = "AntiforgeryFieldname";
+    options.HeaderName = "X-CSRF-TOKEN";
+    options.SuppressXFrameOptionsHeader = false;    
+});
+
+builder.Services.AddDataProtection(options =>
+{
+    options.ApplicationDiscriminator = "Client.Web";
+}).PersistKeysToDbContext<ApplicationDbContext>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -70,6 +87,8 @@ app.UseHsts();
 
 using (var scope = app.Services.CreateScope())
 {
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     app.SeedUsers(userManager, roleManager);

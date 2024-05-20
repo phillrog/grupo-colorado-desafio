@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Client.Web.Web
 {
     [Authorize]
+    //[IgnoreAntiforgeryToken]
     public class BasePageModel : PageModel
     {
         internal readonly IClientesService _clienteService;

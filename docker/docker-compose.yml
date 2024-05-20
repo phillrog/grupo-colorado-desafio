@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  mssql:
+    image: 'mcr.microsoft.com/mssql/server'
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: banco       
+
+  client.apigateway:
+    image: ${DOCKER_REGISTRY-}clientapigateway
+    build:
+      context: ../src
+      dockerfile: Client.ApiGateway/Dockerfile
+
+  client.api:
+    image: ${DOCKER_REGISTRY-}clientapi
+    build:
+      context: ../src
+      dockerfile: Client.Api/Dockerfile  
+
+  client.web:
+    image: ${DOCKER_REGISTRY-}clientweb
+    build:
+      context: ../src
+      dockerfile: Client.Web/Dockerfile

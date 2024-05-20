@@ -22,7 +22,8 @@ class Crud {
                     type: "get",
                     url: `./${this.#variaveis.controlador}?handler=GetLatestData`,
                     headers: {
-                        RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+                        RequestVerificationToken: $('input:hidden[name="AntiforgeryFieldname"]').val(),
+                        'X-CSRF-TOKEN': $('input:hidden[name="AntiforgeryFieldname"]').val()
                     },
                     contentType: "application/json",
                     success: function (data) {
@@ -37,7 +38,8 @@ class Crud {
                     type: "POST",
                     url: `./${this.#variaveis.controlador}?handler=addNewTelefone`,
                     headers: {
-                        RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+                        RequestVerificationToken: $('input:hidden[name="AntiforgeryFieldname"]').val(),
+                        'X-CSRF-TOKEN': $('input:hidden[name="AntiforgeryFieldname"]').val()
                     },
                     data: data,
                     success: function (response) {
@@ -61,7 +63,8 @@ class Crud {
                     type: "POST",
                     url: `./${this.#variaveis.controlador}?handler=removeTelefone`,
                     headers: {
-                        RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+                        RequestVerificationToken: $('input:hidden[name="AntiforgeryFieldname"]').val(),
+                        'X-CSRF-TOKEN': $('input:hidden[name="AntiforgeryFieldname"]').val()
                     },
                     data: data,
                     success: function (response) {
@@ -82,7 +85,8 @@ class Crud {
                     type: "POST",
                     url: `./Clientes/Delete?handler=DeletarCliente&id=${id}`,
                     headers: {
-                        RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+                        RequestVerificationToken: $('input:hidden[name="AntiforgeryFieldname"]').val(),
+                        'X-CSRF-TOKEN': $('input:hidden[name="AntiforgeryFieldname"]').val()
                     },
 
                     success: function (response) {

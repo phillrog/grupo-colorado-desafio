@@ -1,4 +1,7 @@
 using Client.Api.Configurations;
+using Client.Infrastructure.Data.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NSwag;
@@ -56,12 +59,16 @@ app.UseOpenApi();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.UseExceptionHandler(options => { });
-
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ClienteDbContext>();
+    db.Database.Migrate();
+}
+
 
 app.Run();

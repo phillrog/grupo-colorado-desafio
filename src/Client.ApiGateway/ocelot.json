@@ -1,13 +1,13 @@
 {
   "Routes": [
-    //"clientesAPI": "https://localhost:5007",
+    //"clientesAPI": "http://client.api:5006",
     {
       "DownstreamPathTemplate": "/api/v1/clientes",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5007
+          "Host": "client.api",
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/api/v1/clientes",
@@ -18,11 +18,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/clientes/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5007
+          "Host": "client.api",
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/api/v1/clientes/{id}",
@@ -33,11 +33,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/clientes",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5007
+          "Host": "client.api",
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/api/v1/clientes",
@@ -45,11 +45,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/clientes/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5007
+          "Host": "client.api",
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/api/v1/clientes/{id}",
@@ -57,11 +57,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/clientes/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5007
+          "Host": "client.api",
+          "Port": 5006
         }
       ],
       "UpstreamPathTemplate": "/api/v1/clientes/{id}",
