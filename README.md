@@ -1,4 +1,4 @@
-![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/a952a561-6759-4e4d-a6fa-04b8e1662350)# 👉 Objetivo
+# 👉 Objetivo
 Criar um CRUD cadastro de cliente ASP .NET Core. ⭐
 
 # 💻 Aplicação ASP.NET Core .NET 8.0 
@@ -74,6 +74,9 @@ Migrations relacionado ao Identity
 
 ### Home
 
+![doc2](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/24b67584-ba7a-4a8d-99a3-6873c8741121)
+
+### Área Clientes
 
 
 
