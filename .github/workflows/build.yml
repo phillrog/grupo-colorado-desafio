@@ -15,16 +15,15 @@ jobs:
 
     steps:
     
-      
     - name: Teste Request
-      run: \
+      run: |
         CODE=`curl --write-out '%{http_code}' \
-        --silent \
-        --output /dev/null \
-        --request GET \
-        --url 'https://google.com' \        
-        }'`
-
+            --silent \
+            --output /dev/null \
+            --request GET \            
+            --url 'https://www.google.com' \
+            `
+    
         if [ $CODE!="200" ] 
         then
             echo "FAILURE"
