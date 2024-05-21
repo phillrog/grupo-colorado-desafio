@@ -16,19 +16,6 @@ jobs:
     steps:
     
     - name: Teste Request
-      run: |
-        CODE=`curl --write-out '%{http_code}' \
-            --silent \
-            --output /dev/null \
-            --request GET \            
-            --url 'https://www.google.com' \
-            `
-    
-        if [ $CODE!="200" ] 
-        then
-            echo "FAILURE"
-        else
-            echo "SUCCESS"
-        fi
+      run: http_response=$(curl http://client.api:5006/swagger/index.html -o /dev/null -w '%{http_code}\n' -s); if [ $http_response != "200" ]; then echo "Ooooppssss container não subiu" ; else echo "Manda bala amigão tudo certo ;) heHehEhehEHHEH"; fi;
     
     
