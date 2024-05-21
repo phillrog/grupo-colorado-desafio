@@ -55,6 +55,7 @@ Criar um CRUD cadastro de cliente ASP .NET Core. ⭐
 - SOLID
 - KISS
 - DRY
+- Cache
 
 <a id="tecnologias"></a>
 # 🤖 6 - Tecnologias:
