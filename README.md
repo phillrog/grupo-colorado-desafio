@@ -24,6 +24,7 @@
      1. [11.3 Área do Cliente:](#resultado_3)
      1. [11.4 Mensagens:](#resultado_4)
      1. [11.5 Login:](#resultado_5)
+12. [Versão com Docker](#docker)
 <!-- /MarkdownTOC -->
 </details>
 
@@ -164,5 +165,7 @@ Telefones
 
 ![image](https://github.com/phillrog/grupo-colorado-desafio/assets/8622005/1792fa68-f9eb-46ae-a0dc-ec91a36feca6)
 
+<a id="docker"></a>
+# ☕ 12 - Versão com Docker
 
-
+[Clique aqui no Link para acessar a branch](https://github.com/phillrog/grupo-colorado-desafio/tree/versao-docker)
