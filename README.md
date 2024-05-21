@@ -1,3 +1,5 @@
+[![Build-Versao-Docker](https://github.com/phillrog/grupo-colorado-desafio/actions/workflows/build.yml/badge.svg?branch=versao-docker)](https://github.com/phillrog/grupo-colorado-desafio/actions/workflows/build.yml)
+
 # Versão docker container
 
 # Sumário
